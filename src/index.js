@@ -1,0 +1,67 @@
+import dva from "dva";
+import React from "react";
+// 路由配置
+import RouteConfig from "./route";
+import { setTitle } from "./config";
+setTitle();
+console.error("测试console.log")
+// store 初始化
+import InitModel from "./model/Index.model";
+import LOCALMESSAGEModel from "./model/LOCALMESSAGE.model";
+import AppModel from "./model/App.model";
+import UserModel from "./model/User.model";
+import FriendlistModel from "./model/Friendlist.model";
+import GrouplistModel from "./model/Grouplist.model";
+import GetNewMsgList from "./model/GetNewMsgList.model";
+import SendMsgmodel from "./model/SendMsg.model";
+import HandShakeModel from "./model/HandShake.model";
+import Largegrouplistmodel from "./model/Largegrouplist.model";
+import Todosmodel from "./model/Todos.model";
+import GroupChatmodel from "./model/GroupChat.model";
+import PushHasNewMsgmodel from "./model/PushHasNewMsg.model";
+import PushHasGreetMsgmodel from "./model/PushHasGreetMsg.model";
+import SendLargeGroupMsgmodel from "./model/SendLargeGroupMsg.model";
+import AllSingleMsgArrivalmodel from "./model/AllSingleMsgArrival.model";
+import AllLargeGroupMsgArrivalmodel from "./model/AllLargeGroupMsgArrival.model";
+import Ossmodel from "./model/Oss.model";
+import getSingleChatHistoryMsgmodel from "./model/getSingleChatHistoryMsg.model";
+import GetLargeGroupHistoryMsgmodel from "./model/GetLargeGroupHistoryMsg.model";
+import GetLargeGroupDetailmodel from "./model/GetLargeGroupDetail.model";
+import RemoveGroupMemModel from "./model/RemoveGroupMem.model";
+import QueryFriendRelationByUinmodel from "./model/QueryFriendRelationByUin.model";
+import AeceiptMsgArrival from "./model/AeceiptMsgArrival.model";
+import LargeGroupMsgArrival from "./model/LargeGroupMsgArrival.model";
+
+import ChatModel from "./model/Chat.model";
+import "./assets/style/reset.less";
+const app = dva();
+app.model(InitModel);
+app.model(AppModel);
+app.model(UserModel);
+app.model(FriendlistModel);
+app.model(GrouplistModel);
+app.model(ChatModel);
+app.model(GetNewMsgList);
+app.model(SendMsgmodel);
+app.model(HandShakeModel);
+app.model(Largegrouplistmodel);
+app.model(Todosmodel);
+app.model(GroupChatmodel);
+app.model(PushHasNewMsgmodel);
+app.model(PushHasGreetMsgmodel);
+app.model(SendLargeGroupMsgmodel);
+app.model(AllSingleMsgArrivalmodel);
+app.model(AllLargeGroupMsgArrivalmodel);
+app.model(Ossmodel);
+app.model(getSingleChatHistoryMsgmodel);
+app.model(GetLargeGroupHistoryMsgmodel);
+app.model(LOCALMESSAGEModel);
+app.model(GetLargeGroupDetailmodel);
+app.model(RemoveGroupMemModel);
+app.model(QueryFriendRelationByUinmodel);
+app.model(AeceiptMsgArrival);
+app.model(LargeGroupMsgArrival);
+app.router(props => {
+  return <RouteConfig {...props} />;
+});
+app.start("#root");

@@ -1,0 +1,49 @@
+:global {
+  #root {
+    width: 100vw;
+    height: 100vh;
+    min-width: 1136px;
+    min-height: 750px;
+    background: url('../../assets/image/bg.png') no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.appSpace {
+  width: 1136px;
+  height: 750px;
+  background: #f3f3f3;
+  position: relative;
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateX(100%);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateX(0);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 1000ms;
+}

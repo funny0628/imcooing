@@ -1,0 +1,1699 @@
+<?xml version="1.0"                                  encoding="UTF-8"                        standalone="yes" ?>
+<metalib tagsetversion="1"                           name="client"                           version="2">
+
+  <!--字符串长度定义-->
+  <macro name="PHONE_LEN"                                value="16"                              desc="电话号的长度"/>
+  <macro name="LANG_CODE_LEN"                            value="6"                               desc="国家的长度"/>
+  <macro name="ERROR_MSG_LEN"                            value="256"                             desc="错误消息长度"/>
+  <macro name="AVATAR_URL_LEN"                           value="128"                             desc="小头像长度"/>
+  <macro name="QRCODE_LEN"                               value="256"                             desc="二维码的长度"/>
+  <macro name="ALIAS_LEN"                                value="64"                              desc="昵称的长度"/>
+  <macro name="PUBLIC_ECC_KEY_LEN"                       value="64"                              desc="Ecc公钥的长度"/>
+  <macro name="SIGN_LEN"                                 value="512"                             desc="签名的长度"/>
+  <macro name="SERVER_PUBLIC_ECC_KEY_LEN"                value="64"                              desc="服务器Ecc公钥的长度"/>
+  <macro name="SERVER_NONCE_LEN"                         value="16"                              desc="服务器随机数的长度"/>
+  <macro name="IMEI_LEN"                                 value="64"                              desc="imei的长度"/>
+  <macro name="BRAND_LEN"                                value="32"                              desc="brand的长度"/>
+  <macro name="MODEL_LEN"                                value="64"                              desc="model的长度"/>
+  <macro name="MSG_CONTENT_LEN"                          value="5000"                            desc="最大消息的长度"/>
+  <macro name="GROUP_TITLE_LEN"                          value="128"                             desc="群名称的长度"/>
+  <macro name="GROUP_ICON_LEN"                           value="128"                             desc="群头像的长度"/>
+  <macro name="PASSWORD_LEN"                             value="128"                             desc="密码的长度"/>
+  <macro name="APNS_TOKEN_LEN"                           value="96"                              desc="push token的长度"/>
+  <macro name="EMAIL_LEN"                                value="32"                              desc="email的长度"/>
+  <macro name="CERT_LEN"                                 value="128"                             desc="cert的长度"/>
+  <macro name="AES_LEN"                                  value="128"                             desc="aes的长度"/>
+  <macro name="PRIVATE_KEY_LEN"                          value="128"                             desc="private key的长度"/>
+  <macro name="PUBLIC_KEY_LEN"                           value="128"                             desc="public的长度"/>
+  <macro name="AES_KEY_LEN"                              value="512"                             desc="aesKey的长度"/>
+  <macro name="AES_IV_LEN"                               value="512"                             desc="aesIV的长度"/>
+  <macro name="APP_VERSION_LEN"                          value="128"                             desc="app版本的长度"/>
+  <macro name="AUDIO_KEY_LEN"                            value="256"                             desc="AUDIO KEY的长度"/>
+  <macro name="AUDIO_NAME_LEN"                           value="256"                             desc="AUDIIO NAME的长度"/>
+  <macro name="MODIFY_USER_INFO_LEN"                     value="8192"                            desc="修改用户信息的长度"/>
+  <macro name="THIRD_PARTY_LOGIN_TOKEN_LEN"              value="128"                             desc="响应的第三方登入token的长度"/>
+  <macro name="SMS_CODE_LEN"                             value="16"                              desc="短信验证码的长度"/>
+  <macro name="GREET_CONTENT_LEN"                        value="128"                             desc="招呼长度"/>
+  <macro name="CHAT_TAG_LEN"                             value="128"                             desc="聊天标签的长度"/>
+  <macro name="SIGNATURE_MSG_LEN"                        value="128"                             desc="个人主页个性签名的长度"/>
+  <macro name="CURRENT_VERSION_LEN"                      value="100"                             desc="版本号的长度"/>
+  <macro name="CHANNEL_LEN"                      		 value="20"                              desc="app渠道"/>
+  <macro name="DOWNLOAD_CONNECTION_LEN"                  value="200"                             desc="下载链接"/>
+  <macro name="REMARK_LEN"                        		 value="128"                             desc="备注名长度"/>
+
+  <macro name="MAX_ONCE_OP_LARGE_GROUP_MEM_CNT"          value="100"                             desc="大群一次可以操作的最大群成员数量"/>
+  <macro name="MAX_ONCE_GET_LARGE_GROUP_MEM_CNT"         value="20"                              desc="单次查询大群的成员最大数量"/>
+  <macro name="MAX_GET_LARGE_GROUP_DETAIL_CNT"           value="10"                              desc="获取群详情时返回的群成员最大数量"/>
+  <macro name="MAX_LARGE_GROUP_ADMIN_CNT"                value="20"                              desc="大群的管理员的最大数量"/>
+  <macro name="MAX_LARGE_GROUP_AVATOR_CNT"               value="4"                               desc="获取大群头像的数量"/>
+  <macro name="MAX_LARGE_GROUP_ARRIVE_MSG_CNT"           value="100"                             desc="大群已达消息的最大数量"/>
+  <macro name="MAX_USER_HOLD_GROUP_SESSION_CNT"          value="100"                             desc="用户可以加入群聊的最大数量"/>
+  <macro name="MAX_QUERY_USER_IS_IN_LARGE_GORUP_CNT"     value="300"                             desc="查询用户是否在大群中的最大数量"/>
+  <macro name="MAX_GET_LARGE_GROUP_AVATAR_MEM_CNT"       value="4"                               desc="提供给大群头像时取的最大成员数量"/>
+  <macro name="MAX_FRIEND_CNT"                           value="200"                             desc="好友的最大数量"/>
+  <macro name="MAX_RETURN_MSG_CNT"                       value="20"                              desc="一个会话返回的最大消息数量"/>
+  <macro name="MAX_MSG_ID_CNT"                           value="200"                             desc="最大消息id数量"/>
+  <macro name="MAX_RETURN_GREET_CNT"                     value="20"                              desc="返回招呼的最大数量"/>
+  <macro name="MAX_DIALOG_CNT"                           value="100"                             desc="会话的最大数量"/>
+  <macro name="MAX_USER_CNT"                             value="100"                             desc="查询用户的最大数量"/>
+  
+  <macro name="MAX_WEB_KEY_LEN"                          value="255"                             desc="Web端获取签名的长度"/>
+
+  <!--
+    所有消息的时间都是以秒为基准;
+
+    消息格式：
+    {
+        "msgType":"消息类型",
+        "data":"消息实体"
+    }
+
+    msg_type 支持的类型：
+         text     表示文本
+         picture  表示图片
+         voice    表示语音
+         vedio    表示视频
+         location 表示定位
+         system   表示系统   
+         
+    data由客户端填充   
+
+    当msg_type为system的消息data实体有以下：
+        有新招呼格式                    "data":{"pushType":"has_new_greet", "content"{"greetId":1, "sendUin":1, "receiveUin":3, "sendTime":4, "greetStatus":0, "read":0, "content":"content", "unreadCount":2}}
+        结识加好友通知                  "data":{"pushType":"add_friend",                "content"{"uin":1(好友的uin), "nickName":"好友昵称", "prompt":"加好友文案"}}
+        撤回单聊消息通知                "data":{"pushType":"cancel_single_msg",         "content"{"opUin":1, "dstUin":1000, "msgId":1230, "prompt":"撤回消息文案"}}
+        被呼叫的用户收到语音聊天提醒     "data":{"pushType":"start_audio_call", "content"{"audioStatus":"1", "channelKey":"key_xxx", "channelName":"name_xxx", "nickName":"abc"}}
+        被呼叫用户按了”接听”按钮        "data":{"pushType":"accept_audio_call",         "content"{"audioStatus":"1"}
+        被呼叫用户按了”拒绝”按钮        "data":{"pushType":"reject_audio_call",         "content"{"audioStatus":"1"}
+        呼叫方按”取消”按钮              "data":{"pushType":"cancel_audio_call",         "content"{"audioStatus":"1"}
+        通话接通后对方挂断              "data":{"pushType":"end_audio_call",            "content"{"audioStatus":"1"}
+        呼叫方等待过长                  "data":{"pushType":"timeout_audio_call",        "content"{"audioStatus":"1"}
+        大群新成员加入通知              "data":{"pushType":"add_large_group_mem",       "content"{"groupUin":3333, "prompt":"添加大群成员的文案"}}
+        退出大群通知                    "data":{"pushType":"quit_large_group",          "content"{"groupUin":3333, "prompt":"退出大群的文案"}}
+        删除大群成员通知                "data":{"pushType":"remove_large_group_mem",    "content"{"groupUin":3333, "prompt":"删除大群成员的文案"}}
+        添加大群管理员通知              "data":{"pushType":"add_large_group_admin",     "content"{"groupUin":3333, "prompt":"添加大群管理员的文案"}}
+        删除大群管理员通知              "data":{"pushType":"remove_large_group_admin",  "content"{"groupUin":3333, "prompt":"删除大群管理员的文案"}}
+        修改大群名称或头像通知          "data":{"pushType":"update_large_group_title_or_icon",  "content"{"groupUin":3333, "prompt":"修改大群名称或名称的文案"}}
+        大群更新查看资料、私聊设置通知    "data":{"pushType":"update_large_group_view_profile_chat_set", "content"{"groupUin":3333, "prompt":"大群查看资料、私聊设置通知"}}
+		大群成员被禁言通知              "data":{"pushType":"update_large_group_member_say", "content"{"groupUin":3333, "prompt":"大群成员被禁言通知"}}
+		大群更新全体禁言设置通知    "data":{"pushType":"banned_large_group_mem", "content"{"groupUin":3333, "prompt":"大群全体禁言设置通知"}}
+    -->
+
+  <!--系统命令字-->
+  <macrosgroup name="ReqCmds">
+    <macro name="CMD_HEARTBEAT_REQ"                                 value="0x10001001"       desc="心跳 时间设置为10s发送一次"/>
+    <macro name="CMD_HEARTBEAT_RSP"                                 value="0x10008001"       desc="心跳"/>
+
+    <macro name="CMD_HANDSHAKE_REQ"                                 value="0x10001003"       desc="握手"/>
+    <macro name="CMD_HANDSHAKE_RSP"                                 value="0x10008003"       desc="握手"/>
+
+    <macro name="CMD_CONFIRM_HANDSHAKE_REQ"                         value="0x10001004"       desc="握手确认"/>
+    <macro name="CMD_CONFIRM_HANDSHAKE_RSP"                         value="0x10008004"       desc="握手确认"/>
+
+    <macro name="CMD_BACK_VERSION_REQ"                              value="0x70001028"       desc="返回版本号和更新提示"/>
+    <macro name="CMD_BACK_VERSION_RSP"                              value="0x70008028"       desc="返回版本号和更新提示"/>
+	
+	<macro name="CMD_NEW_BACK_VERSION_REQ"                          value="0x70001033"       desc="新返回版本号和更新提示"/>
+    <macro name="CMD_NEW_BACK_VERSION_RSP"                          value="0x70008033"       desc="新返回版本号和更新提示"/>
+
+    <macro name="CMD_GET_SERVER_TIME_REQ"                           value="0x10001006"       desc="获取服务器时间"/>
+    <macro name="CMD_GET_SERVER_TIME_RSP"                           value="0x10008006"       desc="获取服务器时间"/>
+
+    <macro name="CMD_KICK_USER_RSP"                                 value="0x10001007"       desc="踢出用户"/>
+
+    <macro name="CMD_LOGIN_BY_PASSWORD_REQ"                         value="0x30011003"       desc="密码登录"/>
+    <macro name="CMD_LOGIN_BY_PASSWORD_RSP"                         value="0x30018003"       desc="密码登录"/>
+
+    <macro name="CMD_LOGOUT_REQ"                                    value="0x30011004"       desc="退出登录"/>
+    <macro name="CMD_LOGOUT_RSP"                                    value="0x30018004"       desc="退出登录"/>
+
+    <macro name="CMD_SEND_SMS_REQ"                                  value="0x30011006"       desc="发送短信"/>
+    <macro name="CMD_SEND_SMS_RSP"                                  value="0x30018006"       desc="发送短信"/>
+
+    <macro name="CMD_SMS_CHECK_REQ"                                 value="0x30011007"       desc="短信校验"/>
+    <macro name="CMD_SMS_CHECK_RSP"                                 value="0x30018007"       desc="短信校验"/>
+
+    <macro name="CMD_SET_NEW_PASSWORD_BY_SMS_REQ"                   value="0x30011008"       desc="通过短信设置新密码"/>
+    <macro name="CMD_SET_NEW_PASSWORD_BY_SMS_RSP"                   value="0x30018008"       desc="通过短信设置新密码"/>
+
+    <macro name="CMD_LOGIN_BY_SMS_REQ"                              value="0x30011010"       desc="验证码注册登录"/>
+    <macro name="CMD_LOGIN_BY_SMS_RSP"                              value="0x30018010"       desc="验证码注册登录"/>
+
+    <macro name="CMD_QUERY_FRIEND_RELATION_BY_QRCODE_REQ"           value="0x3011100C"       desc="扫描个人二维码查询是否是好友关系"/>
+    <macro name="CMD_QUERY_FRIEND_RELATION_BY_QRCODE_RSP"           value="0x3011800C"       desc="扫描个人二维码查询是否是好友关系"/>
+
+    <macro name="CMD_MODIFY_PASSWORD_REQ"                           value="0x3011100E"       desc="修改用户密码"/>
+    <macro name="CMD_MODIFY_PASSWORD_RSP"                           value="0x3011800E"       desc="修改用户密码"/>
+
+    <macro name="CMD_QUERY_FRIEND_RELATION_BY_PHONE_REQ"            value="0x3011100F"       desc="通过手机号查询是否是好友关系"/>
+    <macro name="CMD_QUERY_FRIEND_RELATION_BY_PHONE_RSP"            value="0x3011800F"       desc="通过手机号查询是否是好友关系"/>
+
+    <macro name="CMD_QUERY_FRIEND_RELATION_BY_UIN_REQ"              value="0x31111021"       desc="通过uin或手机号查询是否是好友关系"/>
+    <macro name="CMD_QUERY_FRIEND_RELATION_BY_UIN_RSP"              value="0x31118021"       desc="通过uin或手机号查询是否是好友关系"/>
+
+    <macro name="CMD_IS_PASSWORDWD_SET_REQ"                         value="0x30111022"       desc="查询密码是否设置"/>
+    <macro name="CMD_IS_PASSWORDWD_SET_RSP"                         value="0x30118022"       desc="查询密码是否设置"/>
+	
+	<macro name="CMD_QUERY_USER_BY_UIN_REQ"              			value="0x31111023"       desc="通过uin或手机号查询用户"/>
+    <macro name="CMD_QUERY_USER_BY_UIN_RSP"              			value="0x31118023"       desc="通过uin或手机号查询用户"/>
+
+    <macro name="CMD_SET_FRIEND_REMARK_REQ"                         value="0x40011008"       desc="设置好友备注"/>
+    <macro name="CMD_SET_FRIEND_REMARK_RSP"                         value="0x40018008"       desc="设置好友备注"/>
+
+    <macro name="CMD_PUSH_HAS_NEW_MSG_RSP"                          value="0x60018000"       desc="有新消息推送"/>	
+	<macro name="CMD_NEW_PUSH_HAS_NEW_MSG_RSP"                      value="0x60018002"       desc="有新消息推送"/>
+    <macro name="CMD_PUSH_HAS_NEW_GREET_MSG_RSP"                    value="0x60028000"       desc="结识有新消息"/>
+    <macro name="CMD_PUSH_HAS_NEW_FRIEND_CIRCLE_STATUS_RSP"         value="0x60028001"       desc="朋友圈有新状态"/>
+
+    <macro name="CMD_SEND_MSG_REQ"                                  value="0x60011001"       desc="发送消息"/>
+    <macro name="CMD_SEND_MSG_RSP"                                  value="0x60018001"       desc="发送消息"/>
+
+    <macro name="CMD_GET_CHAT_DETAIL_REQ"                           value="0x60011006"       desc="获取单聊详情"/>
+    <macro name="CMD_GET_CHAT_DETAIL_RSP"                           value="0x60018006"       desc="获取单聊详情"/>
+
+    <macro name="CMD_GET_SINGLE_CHAT_MSG_REQ"                       value="0x60011008"       desc="获取单聊消息"/>
+    <macro name="CMD_GET_SINGLE_CHAT_MSG_RSP"                       value="0x60018008"       desc="获取单聊消息"/>
+
+    <macro name="CMD_GET_LARGE_GROUP_MSG_REQ"                       value="0x60011009"       desc="获取大群消息"/>
+    <macro name="CMD_GET_LARGE_GROUP_MSG_RSP"                       value="0x60018009"       desc="获取大群消息"/>
+
+    <macro name="CMD_CANCEL_AUDIO_CALL_REQ"                         value="0x6001101A"       desc="实时语音取消呼叫"/>
+    <macro name="CMD_CANCEL_AUDIO_CALL_RSP"                         value="0x6001801A"       desc="实时语音取消呼叫"/>
+
+    <macro name="CMD_END_AUDIO_CALL_REQ"                            value="0x6001101B"       desc="实时语音挂断呼叫"/>
+    <macro name="CMD_END_AUDIO_CALL_RSP"                            value="0x6001801B"       desc="实时语音挂断呼叫"/>
+
+    <macro name="CMD_AUDIO_CALL_TIMEOUT_REQ"                        value="0x6001101C"       desc="实时语音呼叫超时"/>
+    <macro name="CMD_AUDIO_CALL_TIMEOUT_RSP"                        value="0x6001801C"       desc="实时语音呼叫超时"/>
+
+    <macro name="CMD_ALL_SINGLE_MSG_ARRIVAL_REQ"                    value="0x60011015"       desc="所有的单聊消息已达"/>
+    <macro name="CMD_ALL_SINGLE_MSG_ARRIVAL_RSP"                    value="0x60018015"       desc="所有的单聊消息已达"/>
+
+    <macro name="CMD_START_AUDIO_CALL_REQ"                          value="0x60011017"       desc="实时语音呼叫对方"/>
+    <macro name="CMD_START_AUDIO_CALL_RSP"                          value="0x60018017"       desc="实时语音呼叫对方"/>
+
+    <macro name="CMD_ACCEPT_AUDIO_CALL_REQ"                         value="0x60011018"       desc="实时语音呼叫被接起"/>
+    <macro name="CMD_ACCEPT_AUDIO_CALL_RSP"                         value="0x60018018"       desc="实时语音呼叫被接起"/>
+
+    <macro name="CMD_REJECT_AUDIO_CALL_REQ"                         value="0x60011019"       desc="实时语音呼叫被拒绝"/>
+    <macro name="CMD_REJECT_AUDIO_CALL_RSP"                         value="0x60018019"       desc="实时语音呼叫被拒绝"/>
+
+    <macro name="CMD_CANCEL_SINGLE_MSG_REQ"                         value="0x60011022"       desc="撤回单聊消息"/>
+    <macro name="CMD_CANCEL_SINGLE_MSG_RSP"                         value="0x60018022"       desc="撤回单聊消息"/>
+
+    <macro name="CMD_MSG_ARRIVAL_REQ"                               value="0x60011023"       desc="消息到达"/>
+    <macro name="CMD_MSG_ARRIVAL_RSP"                               value="0x60018023"       desc="消息到达"/>
+
+    <macro name="CMD_GET_HAS_NEW_MSG_DIALOG_LIST_REQ"               value="0x60011024"       desc="获取有新消息的会话列表"/>
+    <macro name="CMD_GET_HAS_NEW_MSG_DIALOG_LIST_RSP"               value="0x60018024"       desc="获取有新消息的会话列表"/>
+
+    <macro name="CMD_FRIEND_CIRCLE_STATUS_HAD_READ_REQ"             value="0x60011025"       desc="朋友圈新状态已读"/>
+    <macro name="CMD_FRIEND_CIRCLE_STATUS_HAD_READ_RSP"             value="0x60018025"       desc="朋友圈新状态已读"/>
+
+    <macro name="CMD_MODIFY_USER_INFO_REQ"                          value="0x70001000"       desc="修改用户信息"/>
+    <macro name="CMD_MODIFY_USER_INFO_RSP"                          value="0x70008000"       desc="修改用户信息"/>
+
+    <macro name="CMD_REQ_THIRD_PARTY_LOGIN_TOKEN_REQ"               value="0x70001001"       desc="请求第三方登入的token"/>
+    <macro name="CMD_REQ_THIRD_PARTY_LOGIN_TOKEN_RSP"               value="0x70008001"       desc="请求第三方登入的token"/>
+
+    <macro name="CMD_QUERY_USER_BY_PHONE_REQ"                       value="0x70001003"       desc="通过手机号查询用户信息"/>
+    <macro name="CMD_QUERY_USER_BY_PHONE_RSP"                       value="0x70008003"       desc="通过手机号查询用户信息"/>
+
+    <macro name="CMD_SEND_GREET_REQ"                                value="0x70001004"       desc="发送招呼"/>
+    <macro name="CMD_SEND_GREET_RSP"                                value="0x70008004"       desc="发送招呼"/>
+
+    <macro name="CMD_PULL_SEND_GREET_LIST_REQ"                      value="0x70001005"       desc="拉取发送的招呼"/>
+    <macro name="CMD_PULL_SEND_GREET_LIST_RSP"                      value="0x70008005"       desc="拉取发送的招呼"/>
+
+    <macro name="CMD_PULL_RECEIVE_GREET_LIST_REQ"                   value="0x70001006"       desc="拉取接收的招呼"/>
+    <macro name="CMD_PULL_RECEIVE_GREET_LIST_RSP"                   value="0x70008006"       desc="拉取接收的招呼"/>
+
+    <macro name="CMD_ADD_BILATERAL_FRIEND_REQ"                      value="0x70001007"       desc="双向添加好友"/>
+    <macro name="CMD_ADD_BILATERAL_FRIEND_RSP"                      value="0x70008007"       desc="双向添加好友"/>
+
+    <macro name="CMD_REMOVE_BILATERAL_FRIEND_REQ"                   value="0x70011008"       desc="双向删除好友"/>
+    <macro name="CMD_REMOVE_BILATERAL_FRIEND_RSP"                   value="0x70018008"       desc="双向删除好友"/>
+
+    <macro name="CMD_REMOVE_UNILATERAL_FRIEND_REQ"                  value="0x70011009"       desc="单向删除好友"/>
+    <macro name="CMD_REMOVE_UNILATERAL_FRIEND_RSP"                  value="0x70018009"       desc="单向删除好友"/>
+
+    <macro name="CMD_GREET_HAD_READ_LIST_REQ"                       value="0x70001009"       desc="已读招呼列表"/>
+    <macro name="CMD_GREET_HAD_READ_LIST_RSP"                       value="0x70008009"       desc="已读招呼列表"/>
+
+    <macro name="CMD_GET_WANT_GREET_UIN_LIST_REQ"                   value="0x7000100A"       desc="得到要打招呼的列表"/>
+    <macro name="CMD_GET_WANT_GREET_UIN_LIST_RSP"                   value="0x7000800A"       desc="得到要打招呼的列表"/>
+
+    <macro name="CMD_PULL_LAST_GREET_INFO_REQ"                      value="0x7000100B"       desc="拉取最后一条招呼信息"/>
+    <macro name="CMD_PULL_LAST_GREET_INFO_RSP"                      value="0x7000800B"       desc="拉取最后一条招呼信息"/>
+
+    <macro name="CMD_GET_FRIEND_LIST_INFO_REQ"                      value="0x7000100C"       desc="获取好友列表信息"/>
+    <macro name="CMD_GET_FRIEND_LIST_INFO_RSP"                      value="0x7000800C"       desc="获取好友列表信息"/>
+
+    <macro name="CMD_QUERY_GREET_INFO_REQ"                          value="0x7000100D"       desc="查询招呼详情"/>
+    <macro name="CMD_QUERY_GREET_INFO_RSP"                          value="0x7000800D"       desc="查询招呼详情"/>
+
+    <macro name="CMD_SET_USER_MSG_NOT_DISTURB_REQ"                  value="0x70001023"       desc="个人设置消息免打扰"/>
+    <macro name="CMD_SET_USER_MSG_NOT_DISTURB_RSP"                  value="0x70008023"       desc="个人设置消息免打扰"/>
+
+    <macro name="CMD_SET_GLOBAL_MSG_NOT_DISTURB_REQ"                 value="0x70001029"       desc="全局设置消息免打扰"/>
+    <macro name="CMD_SET_GLOBAL_MSG_NOT_DISTURB_RSP"                 value="0x70008029"       desc="全局设置消息免打扰"/>
+	
+	  <macro name="CMD_GET_SINGLE_CHAT_HISTORY_MSG_REQ"              value="0x70001030"       desc="获取单聊历史消息"/>
+    <macro name="CMD_GET_SINGLE_CHAT_HISTORY_MSG_RSP"              value="0x70008030"       desc="获取单聊历史消息"/>
+	
+    <macro name="CMD_GET_SIGNATURE_REQ"                            value="0x70001031"       desc="Web端获取签名"/>
+    <macro name="CMD_GET_SIGNATURE_RSP"                            value="0x70008031"       desc="Web端获取签名"/>
+   
+	  <macro name="CMD_GET_LARGE_GROUP_HISTORY_MSG_REQ"              value="0x70001032"       desc="获取大群历史消息"/>
+    <macro name="CMD_GET_LARGE_GROUP_HISTORY_MSG_RSP"              value="0x70008032"       desc="获取大群历史消息"/>
+
+    <!-- ===================================大群命令=============================================================================== -->
+    <macro name="CMD_CREATE_LARGE_GROUP_REQ"                        value="0x7000100E"       desc="创建大群"/>
+    <macro name="CMD_CREATE_LARGE_GROUP_RSP"                        value="0x7000800E"       desc="创建大群"/>
+
+    <macro name="CMD_GET_LARGE_GROUP_DETAIL_REQ"                    value="0x7000100F"       desc="获取大群详情"/>
+    <macro name="CMD_GET_LARGE_GROUP_DETAIL_RSP"                    value="0x7000800F"       desc="获取大群详情"/>
+
+    <macro name="CMD_GET_LARGE_GROUP_MEM_LIST_REQ"                  value="0x70001010"       desc="获取大群的成员列表"/>
+    <macro name="CMD_GET_LARGE_GROUP_MEM_LIST_RSP"                  value="0x70008010"       desc="获取大群的成员列表"/>
+
+    <macro name="CMD_SEND_LARGE_GROUP_MSG_REQ"                      value="0x70001011"       desc="发送大群消息"/>
+    <macro name="CMD_SEND_LARGE_GROUP_MSG_RSP"                      value="0x70008011"       desc="发送大群消息"/>
+
+    <macro name="CMD_LARGE_GROUP_MSG_ARRIVAL_REQ"                   value="0x70001012"       desc="大群消息已达"/>
+    <macro name="CMD_LARGE_GROUP_MSG_ARRIVAL_RSP"                   value="0x70008012"       desc="大群消息已达"/>
+
+    <macro name="CMD_ADD_LARGE_GROUP_BY_INVITE_REQ"                 value="0x70001013"       desc="邀请加入大群"/>
+    <macro name="CMD_ADD_LARGE_GROUP_BY_INVITE_RSP"                 value="0x70008013"       desc="邀请加入大群"/>
+
+    <macro name="CMD_REMOVE_LARGE_GROUP_MEM_REQ"                    value="0x70001014"       desc="大群删除成员"/>
+    <macro name="CMD_REMOVE_LARGE_GROUP_MEM_RSP"                    value="0x70008014"       desc="大群删除成员"/>
+
+    <macro name="CMD_GET_LARGE_GROUP_LIST_REQ"                      value="0x70001015"       desc="获取大群列表"/>
+    <macro name="CMD_GET_LARGE_GROUP_LIST_RSP"                      value="0x70008015"       desc="获取大群列表"/>
+
+    <macro name="CMD_ADD_LARGE_GROUP_ADMIN_REQ"                     value="0x70001016"       desc="添加大群管理员"/>
+    <macro name="CMD_ADD_LARGE_GROUP_ADMIN_RSP"                     value="0x70008016"       desc="添加大群管理员"/>
+
+    <macro name="CMD_REMOVE_LARGE_GROUP_ADMIN_REQ"                  value="0x70001017"       desc="删除大群管理员"/>
+    <macro name="CMD_REMOVE_LARGE_GROUP_ADMIN_RSP"                  value="0x70008017"       desc="删除大群管理员"/>
+
+    <macro name="CMD_UPDATE_LARGE_GROUP_TITLE_OR_ICON_REQ"          value="0x70001018"       desc="修改大群名称和头像"/>
+    <macro name="CMD_UPDATE_LARGE_GROUP_TITLE_OR_ICON_RSP"          value="0x70008018"       desc="修改大群名称和头像"/>
+
+    <macro name="CMD_UPDATE_MY_LARGE_GROUP_NICK_NAME_REQ"           value="0x70001019"       desc="修改我在大群中的昵称"/>
+    <macro name="CMD_UPDATE_MY_LARGE_GROUP_NICK_NAME_RSP"           value="0x70008019"       desc="修改我在大群中的昵称"/>
+
+    <macro name="CMD_QUIT_LARGE_GROUP_REQ"                          value="0x7000101A"       desc="退出大群"/>
+    <macro name="CMD_QUIT_LARGE_GROUP_RSP"                          value="0x7000801A"       desc="退出大群"/>
+
+    <macro name="CMD_LARGE_GROUP_VIEW_PROFILE_CHAT_SET_REQ"         value="0x7000101B"       desc="大群普通群成员互查看资料、私聊设置"/>
+    <macro name="CMD_LARGE_GROUP_VIEW_PROFILE_CHAT_SET_RSP"         value="0x7000801B"       desc="大群普通群成员互查看资料、私聊设置"/>
+
+    <macro name="CMD_LARGE_GROUP_BANNED_REQ"         				value="0x70001026"       desc="大群禁言设置"/>
+    <macro name="CMD_LARGE_GROUP_BANNED_RSP"         				value="0x70008026"       desc="大群禁言设置"/>
+
+    <macro name="CMD_LARGE_GROUP_MEMBER_BANNED_REQ"         		value="0x70001027"       desc="大群成员禁言设置"/>
+    <macro name="CMD_LARGE_GROUP_MEMBER_BANNED_RSP"         		value="0x70008027"       desc="大群成员禁言设置"/>
+
+    <macro name="CMD_GET_LARGE_GROUP_CREATOR_ADMIN_INFO_REQ"        value="0x7000101C"       desc="获取大群的群主和管理员的信息"/>
+    <macro name="CMD_GET_LARGE_GROUP_CREATOR_ADMIN_INFO_RSP"        value="0x7000801C"       desc="获取大群的群主和管理员的信息"/>
+
+    <macro name="CMD_GET_LARGE_GROUP_INFO_REQ"                      value="0x7000101D"       desc="获取大群的基本信息"/>
+    <macro name="CMD_GET_LARGE_GROUP_INFO_RSP"                      value="0x7000801D"       desc="获取大群的基本信息"/>
+
+    <macro name="CMD_ADD_LARGE_GROUP_BY_QRCODE_REQ"                 value="0x7000101E"       desc="通过二维码加群"/>
+    <macro name="CMD_ADD_LARGE_GROUP_BY_QRCODE_RSP"                 value="0x7000801E"       desc="通过二维码加群"/>
+
+    <macro name="CMD_QUERY_USER_IS_IN_LARGE_GROUP_REQ"              value="0x7000101F"       desc="查询用户是否在大群中"/>
+    <macro name="CMD_QUERY_USER_IS_IN_LARGE_GROUP_RSP"              value="0x7000801F"       desc="查询用户是否在大群中"/>
+
+    <macro name="CMD_GET_LARGE_GROUP_INFO_BY_QRCODE_REQ"            value="0x70001020"       desc="通过大群二维码获取大群的信息"/>
+    <macro name="CMD_GET_LARGE_GROUP_INFO_BY_QRCODE_RSP"            value="0x70008020"       desc="通过大群二维码获取大群的信息"/>
+
+    <macro name="CMD_ALL_LARGE_GROUP_MSG_ARRIVAL_REQ"               value="0x70001021"       desc="所有的大群消息已达"/>
+    <macro name="CMD_ALL_LARGE_GROUP_MSG_ARRIVAL_RSP"               value="0x70008021"       desc="所有的大群消息已达"/>
+
+    <macro name="CMD_LARGE_GROUP_MEMBER_MSG_NOT_DISTURB_REQ"        value="0x70001024"       desc="大群里面的用户个人消息免打扰设置"/>
+    <macro name="CMD_LARGE_GROUP_MEMBER_MSG_NOT_DISTURB_RSP"        value="0x70008024"       desc="大群里面的用户个人消息免打扰设置"/>
+    <!-- ===================================大群命令=============================================================================== -->
+  </macrosgroup>
+
+  <struct name="ClientPkgBodyComm"              version="1">
+    <entry name="sessionId"                     type="uint64"                                                       desc="会话ID"/>
+    <entry name="messageSeq"                    type="uint64"                                                       desc="信息序列号"/>
+    <entry name="deviceId"                      type="uint64"                                                       desc="设备ID"/>
+    <entry name="uin"                           type="uint64"                                                       desc="用户ID"/>
+    <entry name="version"                       type="uint8"                defaultvalue="0x01"                     desc="协议版本号"/>
+    <!-- <entry name="outtime"                       type="uint64"                                                       desc="事务超时时间"/> -->
+  </struct>
+
+  <struct name="ClientPkgBodyBaseResp"          version="1">
+    <entry name="errorCode"                     type="int32"                                                        desc="错误码"/>
+    <entry name="message"                       type="string"            size="ERROR_MSG_LEN"                       desc="错误信息"/>
+  </struct>
+
+  <!--返回版本号和更新提示-->
+  <struct name="BackVersionReq"                 version="1">
+    <entry name="ClientPkgBodyComm"             type="ClientPkgBodyComm"                                            desc=""/>
+    <entry name="clientversion"                 type="string"             size="CURRENT_VERSION_LEN"                desc="版本号"/>
+  </struct>
+
+  <struct name="BackVersionResp"                version="1">
+    <entry name="ClientPkgBodyComm"             type="ClientPkgBodyComm"                                            desc=""/>
+    <entry name="ClientPkgBodyBaseResp"			type="ClientPkgBodyBaseResp"                                        desc=""/>
+    <entry name="currentversion"                type="string"            size="CURRENT_VERSION_LEN"                 desc="当前版本号"/>
+    <entry name="updatetip"                     type="uint32"                                                       desc="=0不更新 =1提示但不强制更新 =2强制更新"/>
+  </struct>
+  
+  <!--返回版本号和更新提示-->
+  <struct name="NewBackVersionReq"                 version="1">
+    <entry name="ClientPkgBodyComm"             type="ClientPkgBodyComm"                                            desc=""/>
+    <entry name="clientversion"                 type="string"             size="CHANNEL_LEN"                	 	desc="版本号"/>
+	<entry name="channel"                 		type="string"             size="CURRENT_VERSION_LEN"                desc="版本号"/>
+  </struct>
+
+  <struct name="NewBackVersionResp"                version="1">
+    <entry name="ClientPkgBodyComm"             type="ClientPkgBodyComm"                                            desc=""/>
+    <entry name="ClientPkgBodyBaseResp"			type="ClientPkgBodyBaseResp"                                        desc=""/>
+    <entry name="currentversion"                type="string"            size="CURRENT_VERSION_LEN"                 desc="当前版本号"/>
+	<entry name="DownloadConnection"            type="string"            size="DOWNLOAD_CONNECTION_LEN"             desc="下载链接"/>
+    <entry name="updatetip"                     type="uint32"                                                       desc="=0不更新 =1提示但不强制更新 =2强制更新"/>
+  </struct>
+
+  <!--心跳-->
+  <struct name="HeartBeatReq"                    version="1">
+    <entry name="ping"                         type="uint64"                                                        desc="ping"/>
+  </struct>
+
+  <struct name="HeartBeatResp"                   version="1">
+    <entry name="pong"                         type="uint64"                                                        desc="pong"/>
+  </struct>
+
+  <!--握手-->
+  <struct name="HandShakeReq"                    version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                             desc=""/>
+    <entry name="publicEccKey"                 type="string"                 size="PUBLIC_ECC_KEY_LEN"              desc="Ecc公钥"/>
+    <entry name="timestamp"                    type="uint64"                                                        desc="时间戳"/>
+    <entry name="publicKeyIndex"               type="uint8"                                                         desc="公钥索引"/>
+    <entry name="sign"                         type="string"                 size="SIGN_LEN"                        desc="签名"/>
+  </struct>
+
+  <struct name="HandShakeResp"                   version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                             desc=""/>
+    <entry name="serverPublicEccKey"           type="string"                 size="SERVER_PUBLIC_ECC_KEY_LEN"       desc="服务器Ecc公钥"/>
+    <entry name="serverNonce"                  type="string"                 size="SERVER_NONCE_LEN"                desc="服务器随机数"/>
+  </struct>
+
+  <!--握手确认-->
+  <struct name="ConfirmHandShakeReq"             version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                             desc=""/>
+    <entry name="timestamp"                    type="uint64"                                                        desc="时间戳"/>
+    <entry name="sign"                         type="string"                 size="SIGN_LEN"                        desc="签名"/>
+  </struct>
+
+  <struct name="ConfirmHandShakeResp"            version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                       desc=""/>
+  </struct>
+
+  <!--退出登入-->
+  <struct name="LogoutReq"                       version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                       desc=""/>
+    <entry name="appVersion"                   type="uint32"                                                  desc=""/>
+    <entry name="deviceType"                   type="uint8"                                                   desc="=1表示ios；=2表示安卓"/>
+    <entry name="imei"                         type="string"                   size="IMEI_LEN"                desc=""/>
+    <entry name="brand"                        type="string"                   size="BRAND_LEN"               desc=""/>
+    <entry name="model"                        type="string"                   size="MODEL_LEN"               desc=""/>
+  </struct>
+
+  <struct name="LogoutResp"                      version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                       desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"                                   desc=""/>
+  </struct>
+
+  <struct name="UserInfo"                         version="1">
+    <entry name="uin"                           type="uint64"                                                       desc="用户id"/>
+    <entry name="nickName"                      type="string"                 size="ALIAS_LEN"                      desc="昵称"/>
+    <entry name="langCode"                      type="string"                 size="LANG_CODE_LEN"                  desc="区号"/>
+    <entry name="phoneNumber"                   type="string"                 size="PHONE_LEN"                      desc="电话"/>
+    <entry name="smallAvatarUrl"                type="string"                 size="AVATAR_URL_LEN"                 desc="小头像"/>
+    <entry name="originAvatarUrl"               type="string"                 size="AVATAR_URL_LEN"                 desc="大头像"/>
+    <entry name="email"                         type="string"                 size="EMAIL_LEN"                      desc="邮箱"/>
+    <entry name="qrcode"                        type="string"                 size="QRCODE_LEN"                     desc="二维码"/>
+    <entry name="gender"                        type="uint8"                                                        desc="性别,暂时不用"/>
+    <entry name="uinType"                       type="uint32"                 desc="=0表示机器人；=1表示非金主；=2表示金主；=3表示业务员"/>
+    <entry name="certificateStatus"             type="uint32"                 desc="认证状态 0：未认证；1：已认证"/>
+    <entry name="chatTag"                       type="string"                 size="CHAT_TAG_LEN"                   desc="聊天标签，暂时填空"/>
+    <entry name="birthday"                      type="uint64"                                                       desc="生日"/>
+    <entry name="remark"                  		type="string"                 size="REMARK_LEN"              		desc="备注"/>
+    <entry name="maritalStatus"                 type="uint32"                 desc="=0未设置、=1单身、=2恋爱中、=3已婚、=4离异/丧偶"/>
+    <entry name="sexualOrientation"             type="uint32"                 desc="=0未设置、=1爱好女、=2爱好男、=3双性恋、=4无性恋"/>
+    <entry name="friendIntention"               type="uint32"                 desc="=0未设置、=1求撩、=2随缘、=3勿扰"/>
+    <entry name="belongToUin"                   type="uint64"                 desc="金主归属的业务员"/>
+  </struct>
+
+  <!--验证码注册登录-->
+  <struct name="LoginBySmsReq"                  version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                          desc=""/>
+    <entry name="phoneNumber"                 type="string"                 size="PHONE_LEN"                    desc=""/>
+    <entry name="langCode"                    type="string"                 size="LANG_CODE_LEN"                desc=""/>
+    <entry name="SmsCode"                     type="string"                 size="SMS_CODE_LEN"                 desc=""/>
+    <entry name="appVersion"                  type="uint32"                                                     desc=""/>
+    <entry name="deviceType"                  type="uint8"                                                      desc="=1表示ios；=2表示安卓"/>
+    <entry name="imei"                        type="string"                 size="IMEI_LEN"                     desc=""/>
+    <entry name="brand"                       type="string"                 size="BRAND_LEN"                    desc=""/>
+    <entry name="model"                       type="string"                 size="MODEL_LEN"                    desc=""/>
+    <entry name="pushToken"                   type="string"                 size="APNS_TOKEN_LEN"               desc="推送的token"/>
+  </struct>
+
+  <struct name="LoginBySmsResp"                 version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                            desc=""/>
+    <entry name="sessionId"                   type="uint64"                                           desc=""/>
+    <entry name="UserInfo"                    type="UserInfo"                                         desc=""/>
+    <entry name="state"                       type="uint32"                                           desc="=0全局推送关闭， =1全局推送开启"/>
+    <entry name="stepNum"                     type="uint32"                                           desc="进行到哪一步"/>
+  </struct>
+
+  <!--通过手机号查询是否是好友关系-->
+  <struct name="QueryFriendRelationByPhoneReq"       version="1">
+    <entry name="ClientPkgBodyComm"                type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="phoneNumber"                      type="string"                size="PHONE_LEN"             desc=""/>
+    <entry name="langCode"                         type="string"                size="LANG_CODE_LEN"         desc=""/>
+  </struct>
+
+  <struct name="QueryFriendRelationByPhoneResp"     version="1">
+    <entry name="ClientPkgBodyComm"               type="ClientPkgBodyComm"                            desc=""/>
+    <entry name="ClientPkgBodyBaseResp"           type="ClientPkgBodyBaseResp"                        desc=""/>
+    <entry name="UserInfo"                        type="UserInfo"                                     desc=""/>
+    <entry name="userStatus"                      type="uint8"                                        desc="=0:未添加；=1:已添加为好友"/>
+  </struct>
+
+  <!--通过手机号查询用户信息-->
+  <struct name="QueryUserByPhoneReq"            version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="phoneNumber"                 type="string"                size="PHONE_LEN"             desc=""/>
+    <entry name="langCode"                    type="string"                size="LANG_CODE_LEN"         desc=""/>
+  </struct>
+
+  <struct name="QueryUserByPhoneResp"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                              desc=""/>
+    <entry name="UserInfo"                    type="UserInfo"                                           desc=""/>
+    <entry name="exist"                       type="uint32"                                             desc="=0表示用户不存在，=1表示用户存在"/>
+    <entry name="message"                     type="string"                 size="ERROR_MSG_LEN"        desc="错误信息"/>
+  </struct>
+
+  <!--发送招呼-->
+  <struct name="SendGreetReq"                   version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                     desc=""/>
+    <entry name="dstUin"                      type="uint64"                                                desc=""/>
+    <entry name="content"                     type="string"                size="GREET_CONTENT_LEN"        desc=""/>
+  </struct>
+
+  <struct name="SendGreetResp"                  version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                              desc=""/>
+  </struct>
+
+  <struct name="GreetInfo"                      version="1">
+    <entry name="greetId"                     type="uint64"                                           desc=""/>
+    <entry name="sendUin"                     type="uint64"                                           desc="发送uin"/>
+    <entry name="receiveUin"                  type="uint64"                                           desc=""/>
+    <entry name="sendTime"                    type="uint64"                                           desc=""/>
+    <entry name="greetStatus"                 type="uint32"                                           desc="=0表示招呼没有响应；=1表示招呼已经结识"/>
+    <entry name="read"                        type="uint32"                                           desc="=0表示招呼未读；=1表示招呼已读"/>
+    <entry name="content"                     type="string"                size="GREET_CONTENT_LEN"   desc=""/>
+    <entry name="UserInfo"                    type="UserInfo"                                         desc="发送者或接收者的用户信息"/>
+  </struct>
+
+  <!--获取发送的招呼列表-->
+  <struct name="PullSendGreetListReq"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"     desc=""/>
+    <entry name="startGreetId"                type="uint64"                desc="起始拉取id，=0表示获取最新的；> 0 表示拉取小于它的招呼"/>
+    <entry name="count"                       type="uint32"                desc="拉取条数；默认=20"/>
+  </struct>
+
+  <struct name="PullSendGreetListResp"          version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                                       desc=""/>
+    <entry name="count"                       type="uint32"                                                                      desc=""/>
+    <entry name="GreetInfo"                   type="GreetInfo"             count = "MAX_RETURN_GREET_CNT"    refer = "count"     desc=""/>
+  </struct>
+
+  <!--获取接收的招呼列表-->
+  <struct name="PullReceiveGreetListReq"        version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"     desc=""/>
+    <entry name="startGreetId"                type="uint64"                desc="起始拉取id，=0表示获取最新的；> 0 表示拉取小于它的招呼"/>
+    <entry name="count"                       type="uint32"                desc="拉取条数；默认=20"/>
+  </struct>
+
+  <struct name="PullReceiveGreetListResp"       version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                                       desc=""/>
+    <entry name="count"                       type="uint32"                                                                      desc=""/>
+    <entry name="GreetInfo"                   type="GreetInfo"             count = "MAX_RETURN_GREET_CNT"    refer = "count"     desc=""/>
+  </struct>
+
+  <!--获取最后一条为未结识的招呼列表-->
+  <!--
+        这个请求，承担了两个功能：
+        1、如果最新的一条招呼是自己发送的，则最后一条是自己发送的招呼详情；
+        2、如果最新的一条招呼是收到的，则最后一条是接收到的招呼详情；
+        在两种情况下返回的未读数都是自己接收到的未读招呼条数；
+    -->
+  <struct name="PullLastGreetInfoReq"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                       desc=""/>
+  </struct>
+
+  <struct name="PullLastGreetInfoResp"          version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"               desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"           desc=""/>
+    <entry name="exist"                       type="uint32"                          desc="=1表示最新招呼存在，=0表示没有招呼"/>
+    <entry name="GreetInfo"                   type="GreetInfo"                       desc=""/>
+    <entry name="unreadCount"                 type="uint32"                          desc=""/>
+  </struct>
+
+  <!--查询招呼详情-->
+  <struct name="QueryGreetInfoReq"              version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"               desc=""/>
+    <entry name="dstUin"                      type="uint64"                          desc=""/>
+  </struct>
+
+  <struct name="QueryGreetInfoResp"             version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"               desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"           desc=""/>
+    <entry name="exist"                       type="uint32"                          desc="=1表示两个人中有一个人已经发过招呼,=0表示两个人都没有发过招呼"/>
+    <entry name="GreetInfo"                   type="GreetInfo"                       desc=""/>
+  </struct>
+
+  <!--招呼已读-->
+  <struct name="GreetHadReadListReq"         version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                        desc=""/>
+    <entry name="count"                    type="uint32"                                                                   desc=""/>
+    <entry name="greetList"                type="uint64"             count = "MAX_RETURN_GREET_CNT"    refer = "count"     desc=""/>
+  </struct>
+
+  <struct name="GreetHadReadListResp"        version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--得到要打招呼的列表-->
+  <struct name="GetWantGreetUinListReq"      version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                        desc=""/>
+  </struct>
+
+  <struct name="GetWantGreetUinListResp"     version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                        desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                    desc=""/>
+    <entry name="count"                    type="uint32"                                                                   desc=""/>
+    <entry name="UserInfo"                 type="UserInfo"             count = "MAX_RETURN_GREET_CNT"    refer = "count"   desc="当count=0就不需要发送打招呼"/>
+  </struct>
+
+  <!--通过uin或手机号查询是否是好友关系-->
+  <struct name="QueryFriendRelationByUinReq"     version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="uin"                          type="uint64"                                             desc=""/>
+  </struct>
+
+  <struct name="QueryFriendRelationByUinResp"    version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"                              desc=""/>
+    <entry name="UserInfo"                     type="UserInfo"                                           desc=""/>
+    <entry name="userStatus"                   type="uint8"                                              desc="=0:未添加；=1:已添加为好友"/>
+    <entry name="state"						   type="uint32"                                             desc="=0 没开启消息免打扰 =1 开启消息免打扰"/>
+  </struct>
+  
+  <!--通过uin或手机号查询用户-->
+  <struct name="QueryUserByUinReq"     version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="uin"                          type="uint64"                                             desc=""/>
+  </struct>
+
+  <struct name="QueryUserByUinResp"    version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"                              desc=""/>
+	<entry name="count"                        type="uint32"                                             desc=""/>
+    <entry name="UserInfo"                     type="UserInfo"     count = "MAX_USER_CNT"    refer = "count"      desc=""/>
+    <entry name="userStatus"                   type="uint8"        count = "MAX_USER_CNT"    refer = "count"      desc="=0:未添加；=1:已添加为好友"/>
+  </struct>
+
+  <struct name="AddBilateralFriendReq"          version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                         desc=""/>
+    <entry name="uin"                         type="uint64"                                                    desc=""/>
+  </struct>
+
+  <struct name="AddBilateralFriendResp"         version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                         desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                     desc=""/>
+    <entry name="UserInfo"                    type="UserInfo"                                                  desc=""/>
+  </struct>
+
+  <struct name="GetFriendListInfoReq"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                          desc=""/>
+  </struct>
+
+  <struct name="GetFriendListInfoResp"          version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                 desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                             desc=""/>
+    <entry name="count"                       type="uint32"                                                            desc=""/>
+    <entry name="UserInfo"                    type="UserInfo"          count="MAX_FRIEND_CNT"    refer="count"         desc=""/>
+  </struct>
+
+  <!--单聊详情-->
+  <struct name="GetChatDetailReq"               version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                  desc=""/>
+    <entry name="dstUin"                      type="uint64"                                                             desc=""/>
+  </struct>
+
+  <struct name="GetChatDetailResp"              version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                              desc=""/>
+    <entry name="UserInfo"                    type="UserInfo"                                                           desc=""/>
+  </struct>
+
+  <struct name="AesClub"                       version="1">
+    <entry name="dstUin"                     type="uint64"                                                              desc=""/>
+    <entry name="size"                       type="uint32"                                                              desc=""/>
+    <entry name="aesKey"                     type="string"                 size="AES_KEY_LEN"                           desc=""/>
+    <entry name="aesIV"                      type="string"                 size="AES_IV_LEN"                            desc=""/>
+  </struct>
+
+  <!--所有的单聊消息已达-->
+  <struct name="AllSingleMsgArrivalReq"       version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="DstUin"                    type="uint64"                                                               desc=""/>
+  </struct>
+
+  <struct name="AllSingleMsgArrivalResp"     version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--发送消息-->
+  <struct name="SendMsgReq"                   version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="dstUin"                    type="uint64"                                                               desc="对端用户的id"/>
+    <entry name="localId"                   type="uint64"                                                               desc="暂时未使用，填0"/>
+    <entry name="Content"                   type="string"                 size="MSG_CONTENT_LEN"                        desc="消息内容"/>
+  </struct>
+
+  <struct name="SendMsgResp"                 version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                 desc=""/>
+    <entry name="localId"                  type="uint64"                                                                desc="暂时未使用，填0"/>
+    <entry name="msgId"                    type="uint64"                                                                desc="消息id"/>
+    <entry name="SendTime"                 type="uint64"                                                                desc="消息发送的时间"/>
+  </struct>
+
+  <struct name="Message"                        version="1">
+    <entry name="msgId"                       type="uint64"                                              desc=""/>
+    <entry name="srcUin"                      type="uint64"                                              desc=""/>
+    <entry name="dstUin"                      type="uint64"                                              desc=""/>
+    <entry name="Content"                     type="string"             size="MSG_CONTENT_LEN"           desc=""/>
+    <entry name="SendTime"                    type="uint64"                                              desc=""/>
+    <entry name="nickName"                    type="string"             size="ALIAS_LEN"                 desc=""/>
+    <entry name="smallAvatarUrl"              type="string"             size="AVATAR_URL_LEN"            desc=""/>
+  </struct>
+
+  <struct name="HasNewMsgDialog"           version="1">
+    <entry name="dstUin"                 type="uint64"                                      desc=""/>
+    <entry name="dialogTitle"            type="string"    size="ALIAS_LEN"                  desc=""/>
+    <entry name="smallAvatarUrl"         type="string"    size="AVATAR_URL_LEN"             desc="单聊头像"/>
+    <entry name="ChatType"               type="uint32"                                      desc="=1表示单聊；=2表示群聊"/>
+    <entry name="uinType"                type="uint32"     desc="=0表示机器人；=1表示非金主；=2表示金主；=3表示业务员"/>
+    <entry name="belongToUin"            type="uint64"     desc="金主归属的业务员"/>
+    <entry name="UnreadMsgCount"         type="uint32"     desc="未读消息数"/>
+    <entry name="LastMessage"            type="Message"    desc="最后一条消息"/>
+  </struct>
+
+  <struct name="PushHasNewMsgResp"           version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                       desc=""/>
+    <entry name="ChatType"                 type="uint32"                                      desc="=1表示单聊；=2表示群聊"/>
+    <entry name="dstUin"                   type="uint64"                                      desc=""/>
+  </struct>
+  
+    <struct name="NewPushHasNewMsgResp"           version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                       desc=""/>
+    <entry name="ChatType"                 type="uint32"                                      desc="=1表示单聊；=2表示群聊"/>
+    <entry name="dstUin"                   type="uint64"                                      desc=""/>
+	<entry name="HasNewMsgDialog"          type="HasNewMsgDialog"           				  desc=""/>
+  </struct>
+
+  <!--结识有新消息-->
+  <struct name="PushHasNewGreetMsgResp"      version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                       desc=""/>
+    <entry name="Message"                  type="Message"                                     desc=""/>
+  </struct>
+
+  <!--朋友圈有新状态-->
+  <struct name="PushHasNewFriendCircleStatusResp"   version="1">
+    <entry name="ClientPkgBodyComm"               type="ClientPkgBodyComm"                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"           type="ClientPkgBodyBaseResp"                       desc=""/>
+  </struct>
+
+  <!--朋友圈新状态已读-->
+  <struct name="FriendCircleStatusHadReadReq"   version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                  desc=""/>
+  </struct>
+
+  <struct name="FriendCircleStatusHadReadResp"  version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                              desc=""/>
+  </struct>
+
+  <!--获取有新消息的会话列表-->
+  <struct name="GetHasNewMsgDialogListReq"    version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                          desc=""/>
+  </struct>
+
+  <struct name="GetHasNewMsgDialogListResp"  version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                       desc=""/>
+    <entry name="count"                    type="uint32"                                                                      desc=""/>
+    <entry name="HasNewMsgDialog"          type="HasNewMsgDialog"           count="MAX_DIALOG_CNT"   refer="count"            desc=""/>
+  </struct>
+
+  <!--获取单聊消息-->
+  <struct name="GetSingleChatMsgReq"            version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                desc=""/>
+    <entry name="dstUin"                      type="uint64"                           desc="对端用户的id"/>
+    <entry name="startMsgId"                  type="uint64"                           desc="起始消息id"/>
+    <entry name="count"                       type="uint32"                           desc="查询数量"/>
+  </struct>
+
+  <struct name="GetSingleChatMsgResp"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                              desc=""/>
+    <entry name="count"                       type="uint32"                                                             desc=""/>  
+    <entry name="Message"                     type="Message"        count="MAX_RETURN_MSG_CNT"       refer="count"      desc="消息列表"/>
+  </struct>
+  
+  <!--获取单聊历史消息-->
+  <struct name="GetSingleChatHistoryMsgReq"            version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                desc=""/>
+    <entry name="dstUin"                      type="uint64"                           desc=""/>
+    <entry name="startMsgId"                  type="uint64"                           desc="起始消息id"/>
+    <entry name="count"                       type="uint32"                           desc="查询数量"/>
+  </struct>
+
+  <struct name="GetSingleChatHistoryMsgResp"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                              desc=""/>
+    <entry name="dstUin"                      type="uint64"                                                             desc=""/>
+    <entry name="count"                       type="uint32"                                                             desc=""/>
+    <entry name="Message"                     type="Message"        count="MAX_RETURN_MSG_CNT"       refer="count"      desc="消息列表"/>
+  </struct>
+
+  <!--获取大群消息-->
+  <struct name="GetLargeGroupMsgReq"            version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                   desc=""/>
+    <entry name="dstUin"                      type="uint64"                              desc=""/>
+    <entry name="startMsgId"                  type="uint64"                              desc="起始消息id"/>
+    <entry name="count"                       type="uint32"                              desc="查询数量"/>
+  </struct>
+
+  <struct name="GetLargeGroupMsgResp"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                        desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                                    desc=""/>
+    <entry name="count"                       type="uint32"                                                                   desc=""/>
+    <entry name="Message"                     type="Message"        count="MAX_RETURN_MSG_CNT"       refer="count"            desc="消息列表"/>
+  </struct>
+
+  <!--获取大群历史消息-->
+  <struct name="GetLargeGroupHistoryMsgReq"            version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                   desc=""/>
+    <entry name="dstUin"                      type="uint64"                              desc=""/>
+    <entry name="startMsgId"                  type="uint64"                              desc="起始消息id"/>
+    <entry name="count"                       type="uint32"                              desc="查询数量"/>
+  </struct>
+
+  <struct name="GetLargeGroupHistoryMsgResp"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                        desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                                    desc=""/>
+	<entry name="dstUin"                      type="uint64"                           										  desc=""/>
+    <entry name="count"                       type="uint32"                                                                   desc=""/>
+    <entry name="Message"                     type="Message"        count="MAX_RETURN_MSG_CNT"       refer="count"            desc="消息列表"/>
+  </struct>
+
+  <!--消息到达回执-->
+  <struct name="MsgArrivalReq"               version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="dstUin"                   type="uint64"                                                               desc=""/>
+    <entry name="count"                    type="uint32"                                                               desc=""/>
+    <entry name="msgIdList"                type="uint64"    count="MAX_MSG_ID_CNT"   refer="count"                     desc=""/>
+  </struct>
+
+  <struct name="MsgArrivalResp"              version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--查询密码是否设置-->
+  <struct name="IsPasswordSetReq"            version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                    desc=""/>
+  </struct>
+
+  <struct name="IsPasswordSetResp"           version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                desc=""/>
+    <entry name="status"                   type="uint32"                                                               desc="密码是否设置"/>
+  </struct>
+
+  <!--扫描个人二维码查询是否是好友关系-->
+  <struct name="QueryFriendRelationByQrcodeReq"             version="1">
+    <entry name="ClientPkgBodyComm"                       type="ClientPkgBodyComm"                                        desc=""/>
+    <entry name="qrcode"                                  type="string"             size="QRCODE_LEN"                     desc=""/>
+  </struct>
+
+  <struct name="QueryFriendRelationByQrcodeResp"            version="1">
+    <entry name="ClientPkgBodyComm"                       type="ClientPkgBodyComm"                 desc=""/>
+    <entry name="ClientPkgBodyBaseResp"                   type="ClientPkgBodyBaseResp"             desc=""/>
+    <entry name="UserInfo"                                type="UserInfo"                          desc=""/>
+    <entry name="userStatus"                              type="uint8"                             desc="=0:未添加；=1:已添加为好友"/>
+  </struct>
+
+  <!--发送短信-->
+  <struct name="SendSmsReq"                     version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                              desc=""/>
+    <entry name="phoneNumber"                 type="string"                size="PHONE_LEN"         desc=""/>
+    <entry name="langCode"                    type="string"                size="LANG_CODE_LEN"     desc=""/>
+    <entry name="BusinessType"                type="uint32"                                         desc="业务类型；=1表示登入发送；=2表示设置密码发送；"/>
+  </struct>
+
+  <struct name="SendSmsResp"                    version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                              desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                          desc=""/>
+  </struct>
+
+  <!--短信校验-->
+  <struct name="SmsCheckReq"                     version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                             desc=""/>
+    <entry name="phoneNumber"                  type="string"             size="PHONE_LEN"           desc=""/>
+    <entry name="langCode"                     type="string"             size="LANG_CODE_LEN"       desc=""/>
+    <entry name="smsCode"                      type="string"             size="SMS_CODE_LEN"        desc="短信验证码"/>
+    <entry name="BusinessType"                 type="uint32"                                        desc="业务类型；=1表示登入发送；=2表示设置密码发送；"/>
+  </struct>
+
+  <struct name="SmsCheckResp"                    version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                             desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"                         desc=""/>
+    <entry name="BusinessId"                   type="uint64"                                        desc="业务id"/>
+  </struct>
+
+  <!--通过短信设置新密码-->
+  <struct name="SetNewPasswordBySmsReq"      version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                 desc=""/>
+    <entry name="phoneNumber"              type="string"             size="PHONE_LEN"               desc=""/>
+    <entry name="langCode"                 type="string"             size="LANG_CODE_LEN"           desc=""/>
+    <entry name="targetPassword"           type="string"             size="PASSWORD_LEN"            desc=""/>
+    <entry name="BusinessId"               type="uint64"                                            desc=""/>
+  </struct>
+
+  <struct name="SetNewPasswordBySmsResp"     version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                 desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                             desc=""/>
+  </struct>
+
+  <!--密码登入-->
+  <struct name="LoginByPasswordReq"          version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                desc=""/>
+    <entry name="phoneNumber"              type="string"             size="PHONE_LEN"              desc="电话号"/>
+    <entry name="langCode"                 type="string"             size="LANG_CODE_LEN"          desc="区号"/>
+    <entry name="password"                 type="string"             size="PASSWORD_LEN"           desc="密码"/>
+    <entry name="appVersion"               type="uint32"                                           desc="暂时未使用"/>
+    <entry name="deviceType"               type="uint8"                                            desc="=1表示ios；=2表示安卓; 3代表web"/>
+    <entry name="imei"                     type="string"             size="IMEI_LEN"               desc="手机标识，web端填空"/>
+    <entry name="brand"                    type="string"             size="BRAND_LEN"              desc="手机品牌"/>
+    <entry name="model"                    type="string"             size="MODEL_LEN"              desc="手机型号"/>
+    <entry name="pushToken"                type="string"             size="APNS_TOKEN_LEN"         desc="推送用，web端填空"/>
+  </struct>
+
+  <struct name="LoginByPasswordResp"         version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                            desc=""/>
+    <entry name="sessionId"                type="uint64"                                           desc=""/>
+    <entry name="UserInfo"                 type="UserInfo"                                         desc="用户信息,客户端需要保存"/>
+    <entry name="state"                    type="uint32"                                           desc="=0全局推送关闭， =1全局推送开启"/>
+    <entry name="stepNum"                  type="uint32"                                           desc="进行到哪一步"/>
+  </struct>
+
+  <!--设置备注-->
+  <struct name="SetFriendRemarkReq"                version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                               desc=""/>
+    <entry name="alias"                          type="string"             size="ALIAS_LEN"                                  desc=""/>
+  </struct>
+
+  <struct name="SetFriendRemarkResp"               version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--全局设置消息免打扰-->
+  <struct name="SetGlobalMsgNotDisturbReq"           version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="state"                          type="uint32"                                                               desc="=0全局推送关闭， =1全局推送开启"/>
+  </struct>
+
+  <struct name="SetGlobalMsgNotDisturbResp"          version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+
+  <!--个人设置消息免打扰-->
+  <struct name="SetUserMsgNotDisturbReq"           version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                               desc=""/>
+    <entry name="state"                          type="uint32"                                                               desc="=0表示关闭个人消息免打扰； =1表示打开个人消息免打扰"/>
+  </struct>
+
+  <struct name="SetUserMsgNotDisturbResp"          version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--删除好友-->
+  <struct name="RemoveBilateralFriendReq"          version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="uin"                            type="uint64"                                                               desc=""/>
+  </struct>
+
+  <struct name="RemoveBilateralFriendResp"         version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <struct name="RemoveUnilateralFriendReq"        version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="uin"                            type="uint64"                                                               desc=""/>
+  </struct>
+
+  <struct name="RemoveUnilateralFriendResp"        version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--修改密码-->
+  <struct name="ModifyPasswordReq"                 version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="currentPassword"                type="string"             size="PASSWORD_LEN"                                desc=""/>
+    <entry name="targetPassword"                 type="string"             size="PASSWORD_LEN"                                desc=""/>
+  </struct>
+
+  <struct name="ModifyPasswordResp"                version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--发起实时语音-->
+  <struct name="StartAudioCallReq"                 version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                                desc=""/>
+  </struct>
+
+  <struct name="StartAudioCallResp"                version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+    <entry name="key"                            type="string"                 size="AUDIO_KEY_LEN"                          desc=""/>
+    <entry name="name"                           type="string"                 size="AUDIO_NAME_LEN"                         desc=""/>
+  </struct>
+
+  <!--实时语音被接起-->
+  <struct name="AcceptAudioCallReq"                version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                                desc=""/>
+    <entry name="key"                            type="string"                 size="AUDIO_KEY_LEN"                           desc=""/>
+    <entry name="name"                           type="string"                 size="AUDIO_NAME_LEN"                          desc=""/>
+  </struct>
+
+  <struct name="AcceptAudioCallResp"               version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--实时语音被拒绝-->
+  <struct name="RejectAudioCallReq"                version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                                desc=""/>
+    <entry name="key"                            type="string"                 size="AUDIO_KEY_LEN"                           desc=""/>
+    <entry name="name"                           type="string"                 size="AUDIO_NAME_LEN"                          desc=""/>
+  </struct>
+
+  <struct name="RejectAudioCallResp"               version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--实时语音被取消-->
+  <struct name="CancelAudioCallReq"                version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                                desc=""/>
+    <entry name="key"                            type="string"                 size="AUDIO_KEY_LEN"                           desc=""/>
+    <entry name="name"                           type="string"                 size="AUDIO_NAME_LEN"                          desc=""/>
+  </struct>
+
+  <struct name="CancelAudioCallResp"               version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--实时语音被挂断-->
+  <struct name="EndAudioCallReq"                   version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                                desc=""/>
+    <entry name="key"                            type="string"                 size="AUDIO_KEY_LEN"                           desc=""/>
+    <entry name="name"                           type="string"                 size="AUDIO_NAME_LEN"                          desc=""/>
+  </struct>
+
+  <struct name="EndAudioCallResp"                  version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--实时语音超时-->
+  <struct name="TimeoutAudioCallReq"               version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="dstUin"                         type="uint64"                                                                desc=""/>
+    <entry name="key"                            type="string"                 size="AUDIO_KEY_LEN"                           desc=""/>
+    <entry name="name"                           type="string"                 size="AUDIO_NAME_LEN"                          desc=""/>
+  </struct>
+
+  <struct name="TimeoutAudioCallResp"              version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--获取服务器时间-->
+  <struct name="GetServerTimeReq"              version="1">
+    <entry name="ClientPkgBodyComm"          type="ClientPkgBodyComm"                                                     desc=""/>
+  </struct>
+
+  <struct name="GetServerTimeResp"             version="1">
+    <entry name="ClientPkgBodyComm"          type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"      type="ClientPkgBodyBaseResp"                                                 desc=""/>
+    <entry name="serverTime"                 type="uint64"                                                                desc=""/>
+  </struct>
+
+  <!--撤回私聊消息-->
+  <struct name="CancelSingleMsgReq"            version="1">
+    <entry name="ClientPkgBodyComm"          type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="dstUin"                     type="uint64"                                                                desc=""/>
+    <entry name="msgId"                      type="uint64"                                                                desc=""/>
+  </struct>
+
+  <struct name="CancelSingleMsgResp"          version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"     type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--修改用户信息-->
+  <struct name="ModifyUserInfoReq"             version="1">
+    <entry name="ClientPkgBodyComm"          type="ClientPkgBodyComm"                                                     desc=""/>
+    <!--{"small_icon":"small.jpg","big_icon":"big.jpg","covers_img":["1.jpg","2.jpg"],"nick_name":"nick","push_token":"111token","step_num":1,(进行到哪一步,>0才会更新),
+        "signature_msg":"sig","gender":1,"birthday":2,"address":3,"province":4,"city":5,"area":6,"email":"email@163.com","marital_status":1(=1单身、=2恋爱中、=3已婚、=4离异/丧偶),"sexual_orientation":1(=1爱好女、=2爱好男、=3双性恋、=4无性恋),"friend_intention":1(=1求撩、=2随缘、=3勿扰),"chat_tag":["求撩","可撩"]}-->
+    <entry name="userInfoContent"            type="string"                size="MODIFY_USER_INFO_LEN"                     desc=""/>
+  </struct>
+
+  <struct name="ModifyUserInfoResp"           version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"     type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--踢出用户-->
+  <struct name="KickUserResp"                      version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"               desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"           desc=""/>
+    <entry name="kickType"                       type="uint32"                          desc="=1表示正常情况剔除用户；=2表示账号被禁用，剔除用户"/>
+  </struct>
+
+  <!--请求第三方登入token-->
+  <struct name="ReqThirdPartyLoginTokenReq"    version="1">
+    <entry name="ClientPkgBodyComm"          type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="appId"                      type="uint64"                                                                desc="唐朝的appid为 100000"/>
+  </struct>
+
+  <struct name="ReqThirdPartyLoginTokenResp"  version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"     type="ClientPkgBodyBaseResp"                                                 desc=""/>
+    <entry name="token"                     type="string"                 size="THIRD_PARTY_LOGIN_TOKEN_LEN"             desc=""/>
+  </struct>
+
+  <!--Web端获取签名-->
+  <struct name= "GetSignatureReq"             version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                      desc=""/>
+  </struct>
+  
+  <struct name="GetSignatureResp"             version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"     type="ClientPkgBodyBaseResp"                                                 desc=""/>
+    <entry name="EndPoint"                  type="string"                 size="MAX_WEB_KEY_LEN"                         desc=""/>
+    <entry name="AccessKeyId"               type="string"                 size="MAX_WEB_KEY_LEN"                         desc=""/>
+    <entry name="AccessKeySecret"           type="string"                 size="MAX_WEB_KEY_LEN"                         desc=""/>
+    <entry name="Bucket"                    type="string"                 size="MAX_WEB_KEY_LEN"                         desc=""/>
+  </struct>
+    
+
+
+  <!--======================================大群协议========================================================================================================-->
+  <struct name="LargeGroupMemInfo"              version="1">
+    <entry name="uin"                         type="uint64"                                                               desc=""/>
+    <entry name="nickName"                    type="string"                size="ALIAS_LEN"                               desc=""/>
+    <entry name="joinTime"                    type="uint64"                                                               desc=""/>
+    <entry name="memberType"                  type="uint32"                                                               desc="=1是群主；=2表示管理员；=3表示普通群成员;=4表示游客；"/>
+    <entry name="smallAvatarUrl"              type="string"                size="AVATAR_URL_LEN"                          desc=""/>
+    <entry name="uinType"                     type="uint32"                                                               desc="=0表示机器人；=1表示非金主；=2表示金主；=3表示业务员"/>
+    <entry name="belongToUin"                 type="uint64"                                                               desc="金主归属的业务员"/>
+    <entry name="Id"                          type="uint64"                                                               desc="加入大群的id"/>
+    <entry name="memberBanned"      	      type="uint32"                                           					  desc="=1表示该成员没有被禁言"/>
+    <entry name="state"                       type="uint32"                                                               desc="=0个人对群设置消息免打扰关闭， =1个人对群设置消息免打扰开启"/>
+  </struct>
+
+
+  <struct name="LargeGroupInfo"             version="1">
+    <entry name="groupUin"                type="uint64"                                           desc=""/>
+    <entry name="isUnTitle"               type="uint32"                                           desc="=1表示群没有命名"/>
+    <entry name="groupTitle"              type="string"     size="GROUP_TITLE_LEN"                desc=""/>
+    <entry name="TotalCount"              type="uint32"                                           desc="群的总人数"/>
+    <entry name="qrcode"                  type="string"     size="QRCODE_LEN"                     desc="字符串中含有 miyou_qrcode_g 表示群二维码"/>
+    <entry name="ViewProfileChatSet"      type="uint32"                                           desc="=1表示允许普通群成员互查看资料、私聊"/>
+    <entry name="groupIcon"               type="string"     size="GROUP_ICON_LEN"                 desc=""/>
+    <entry name="banned"      			  type="uint32"                                           desc="=1表示允许普通群成员聊天"/>
+  </struct>
+
+  <!--创建大群-->
+  <struct name="CreateLargeGroupReq"            version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                                 desc=""/>
+    <entry name="count"                       type="uint32"                                                                            desc=""/>
+    <entry name="uinList"                     type="uint64"           count="MAX_ONCE_OP_LARGE_GROUP_MEM_CNT"     refer="count"        desc="必须包含自己"/>
+    <entry name="GroupTitle"                  type="string"              size="GROUP_TITLE_LEN"                               		   desc=""/>
+    <entry name="GroupIcon"                   type="string"              size="GROUP_ICON_LEN"                            			   desc=""/>
+  </struct>
+
+  <struct name="CreateLargeGroupResp"           version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                                              desc=""/>
+    <entry name="LargeGroupInfo"              type="LargeGroupInfo"                                                                     desc="大群的属性"/>
+    <entry name="count"                       type="uint32"                                                                             desc=""/>
+    <entry name="LargeGroupMemInfo"           type="LargeGroupMemInfo"      count="MAX_ONCE_OP_LARGE_GROUP_MEM_CNT"   refer="count"     desc=""/>
+  </struct>
+
+  <!--获取大群详情-->
+  <struct name="GetLargeGroupDetailReq"       version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="groupUin"                  type="uint64"                                                               desc=""/>
+  </struct>
+
+  <struct name="GetLargeGroupDetailResp"    version="1">
+    <entry name="ClientPkgBodyComm"       type="ClientPkgBodyComm"                                                            desc=""/>
+    <entry name="ClientPkgBodyBaseResp"   type="ClientPkgBodyBaseResp"                                                        desc=""/>
+    <entry name="LargeGroupInfo"          type="LargeGroupInfo"                                                               desc="大群的属性"/>
+    <entry name="SelfGroupInfo"           type="LargeGroupMemInfo"                                                            desc="自己在大群中的信息"/>
+    <entry name="Count"                   type="uint32"                                                                       desc="数量为起始的10个"/>
+    <entry name="LargeGroupMemInfo"       type="LargeGroupMemInfo" count="MAX_GET_LARGE_GROUP_DETAIL_CNT" refer="Count"       desc="群主+普通成员"/>
+  </struct>
+
+  <!--获取大群的群主和管理员的信息-->
+  <struct name="GetLargeGroupCreatorAdminInfoReq"       version="1">
+    <entry name="ClientPkgBodyComm"                   type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="groupUin"                            type="uint64"                                                               desc=""/>
+  </struct>
+
+  <struct name="GetLargeGroupCreatorAdminInfoResp"    version="1">
+    <entry name="ClientPkgBodyComm"                 type="ClientPkgBodyComm"                                                            desc=""/>
+    <entry name="ClientPkgBodyBaseResp"             type="ClientPkgBodyBaseResp"                                                        desc=""/>
+    <entry name="groupUin"                          type="uint64"                                                                       desc=""/>
+    <entry name="CreatorInfo"                       type="LargeGroupMemInfo"                                                            desc="群主信息"/>
+    <entry name="Count"                             type="uint32"                                                                       desc="管理员的数量"/>
+    <entry name="AdminInfo"                         type="LargeGroupMemInfo" count="MAX_LARGE_GROUP_ADMIN_CNT" refer="Count"            desc="管理员信息"/>
+  </struct>
+
+  <!--获取大群的成员列表，在进入群的成员列表后，第一次请求时startJoinTime=0-->
+  <struct name="GetLargeGroupMemListReq"      version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"              desc=""/>
+    <entry name="groupUin"                  type="uint64"                         desc="群Id"/>
+    <entry name="startId"                   type="uint64"                         desc="起始加入大群的id"/>
+    <entry name="count"                     type="uint32"                         desc="一次获取的成员数量"/>
+  </struct>
+
+  <struct name="GetLargeGroupMemListResp"  version="1">
+    <entry name="ClientPkgBodyComm"      type="ClientPkgBodyComm"                                                            desc=""/>
+    <entry name="ClientPkgBodyBaseResp"  type="ClientPkgBodyBaseResp"                                                        desc=""/>
+    <entry name="count"                  type="uint32"                                                                       desc=""/>
+    <entry name="LargeGroupMemInfo"      type="LargeGroupMemInfo"  count="MAX_ONCE_GET_LARGE_GROUP_MEM_CNT"   refer="count"  desc="返回的群成员时间排序"/>
+    <entry name="hasMore"                type="uint32"                                                                       desc="=1表示还有群成员，可以再次拉取"/>
+  </struct>
+
+  <!--发送大群消息-->
+  <struct name="SendLargeGroupMsgReq"         version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="groupUin"                  type="uint64"                                                               desc="群ID"/>
+    <entry name="localId"                   type="uint64"                                                               desc="暂时未使用，填0"/>
+    <entry name="Content"                   type="string"                 size="MSG_CONTENT_LEN"                        desc="消息内容"/>
+  </struct>
+
+  <struct name="SendLargeGroupMsgResp"       version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                 desc=""/>
+    <entry name="localId"                  type="uint64"                                                                desc=""/>
+    <entry name="msgId"                    type="uint64"                                                                desc="消息id"/>
+    <entry name="SendTime"                 type="uint64"                                                                desc="发送时间，客户端根据这个字段，将时间最新的聊天会话放到列表最上方"/>
+  </struct>
+
+  <!--大群消息到达-->
+  <struct name="LargeGroupMsgArrivalReq"     version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="groupUin"                 type="uint64"                                                               desc=""/>
+    <entry name="count"                    type="uint32"                                                               desc=""/>
+    <entry name="msgIdList"                type="uint64"    count="MAX_LARGE_GROUP_ARRIVE_MSG_CNT"   refer="count"     desc=""/>
+  </struct>
+
+  <struct name="LargeGroupMsgArrivalResp"    version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--邀请加入大群-->
+  <struct name="AddLargeGroupByInviteReq"    version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                                     desc=""/>
+    <entry name="groupUin"                 type="uint64"                                                                                desc=""/>
+    <entry name="Count"                    type="uint32"                                                                                desc=""/>
+    <entry name="UinList"                  type="uint64"           count="MAX_ONCE_OP_LARGE_GROUP_MEM_CNT"     refer="Count"            desc=""/>
+  </struct>
+
+  <struct name="AddLargeGroupByInviteResp"   version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                              desc=""/>
+  </struct>
+
+  <!--大群删除成员-->
+  <struct name="RemoveLargeGroupMemReq"         version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                                     desc=""/>
+    <entry name="groupUin"                    type="uint64"                                                                                desc=""/>
+    <entry name="Count"                       type="uint32"                                                                                desc=""/>
+    <entry name="UinList"                     type="uint64"           count="MAX_ONCE_OP_LARGE_GROUP_MEM_CNT"     refer="Count"            desc=""/>
+  </struct>
+
+  <struct name="RemoveLargeGroupMemResp"        version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                                  desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                                              desc=""/>
+  </struct>
+
+  <!--获取大群列表-->
+  <struct name="GetLargeGroupListReq"            version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                                           desc=""/>
+  </struct>
+
+  <struct name="LargeGroupContact"               version="1">
+    <entry name="LargeGroupInfo"               type="LargeGroupInfo"                                                              desc="大群的属性"/>
+    <entry name="Count"                        type="uint32"                                                                      desc="数量为起始的10个"/>
+    <entry name="LargeGroupMemInfo"            type="LargeGroupMemInfo" count="MAX_GET_LARGE_GROUP_DETAIL_CNT" refer="Count"      desc="群主+普通成员"/>
+  </struct>
+
+  <struct name="GetLargeGroupListResp"       version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                               desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                           desc=""/>
+    <entry name="Count"                    type="uint32"                                                                          desc=""/>
+    <entry name="LargeGroupContact"        type="LargeGroupContact"  count="MAX_USER_HOLD_GROUP_SESSION_CNT"  refer="Count"       desc=""/>
+  </struct>
+
+  <!--添加大群管理员-->
+  <struct name="AddLargeGroupAdminReq"         version="1">
+    <entry name="ClientPkgBodyComm"          type="ClientPkgBodyComm"                                                                  desc=""/>
+    <entry name="groupUin"                   type="uint64"                                                                             desc=""/>
+    <entry name="count"                      type="uint32"                                                                             desc=""/>
+    <entry name="uinList"                    type="uint64"             count="MAX_LARGE_GROUP_ADMIN_CNT"    refer="count"              desc=""/>
+  </struct>
+
+  <struct name="AddLargeGroupAdminResp"       version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"     type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--删除大群管理员-->
+  <struct name="RemoveLargeGroupAdminReq"      version="1">
+    <entry name="ClientPkgBodyComm"          type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="groupUin"                   type="uint64"                                                               desc=""/>
+    <entry name="count"                      type="uint32"                                                               desc=""/>
+    <entry name="uinList"                    type="uint64"      count="MAX_LARGE_GROUP_ADMIN_CNT"    refer="count"       desc=""/>
+  </struct>
+
+  <struct name="RemoveLargeGroupAdminResp"    version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"     type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+
+  <!--修改大群名称和头像-->
+  <struct name="UpdateLargeGroupTitleOrIconReq"    version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="groupUin"                 type="uint64"                                                               desc=""/>
+    <entry name="GroupTitle"               type="string"              size="GROUP_TITLE_LEN"                           desc=""/>
+    <entry name="GroupIcon"                type="string"              size="GROUP_ICON_LEN"                            desc=""/>
+  </struct>
+
+  <struct name="UpdateLargeGroupTitleOrIconResp"   version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--修改我在大群中的昵称-->
+  <struct name="UpdateMyLargeGroupNicknameReq"     version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="groupUin"                       type="uint64"                                                                desc=""/>
+    <entry name="nickName"                       type="string"             size="ALIAS_LEN"                                   desc=""/>
+  </struct>
+
+  <struct name="UpdateMyLargeGroupNicknameResp"    version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="ClientPkgBodyBaseResp"          type="ClientPkgBodyBaseResp"                                                desc=""/>
+  </struct>
+
+  <!--退出大群-->
+  <struct name="QuitLargeGroupReq"                version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                        desc=""/>
+    <entry name="groupUin"                    type="uint64"                                                                   desc=""/>
+  </struct>
+
+  <struct name="QuitLargeGroupResp"               version="1">
+    <entry name="ClientPkgBodyComm"           type="ClientPkgBodyComm"                                                         desc=""/>
+    <entry name="ClientPkgBodyBaseResp"       type="ClientPkgBodyBaseResp"                                                     desc=""/>
+  </struct>
+
+  <!--大群普通群成员互查看资料、私聊设置-->
+  <struct name="LargeGroupViewProfileChatSetReq"            version="1">
+    <entry name="ClientPkgBodyComm"                       type="ClientPkgBodyComm"                        desc=""/>
+    <entry name="groupUin"                                type="uint64"                                   desc=""/>
+    <entry name="ViewProfileChatSet"                      type="uint32"                                   desc="=1表示允许普通群成员互查看资料、私聊"/>
+  </struct>
+
+  <struct name="LargeGroupViewProfileChatSetResp"            version="1">
+    <entry name="ClientPkgBodyComm"                        type="ClientPkgBodyComm"                       desc=""/>
+    <entry name="ClientPkgBodyBaseResp"                    type="ClientPkgBodyBaseResp"                   desc=""/>
+  </struct>
+
+  <!--大群禁言设置-->
+  <struct name="LargeGroupBannedReq"            			  version="1">
+    <entry name="ClientPkgBodyComm"                       type="ClientPkgBodyComm"                        desc=""/>
+    <entry name="groupUin"                                type="uint64"                                   desc=""/>
+    <entry name="Banned"                      			      type="uint32"                                   desc="=1表示允许普通群成员聊天"/>
+  </struct>
+
+  <struct name="LargeGroupBannedResp"            			   version="1">
+    <entry name="ClientPkgBodyComm"                        type="ClientPkgBodyComm"                       desc=""/>
+    <entry name="ClientPkgBodyBaseResp"                    type="ClientPkgBodyBaseResp"                   desc=""/>
+  </struct>
+
+  <!--大群成员禁言设置-->
+  <struct name="LargeGroupMemberBannedReq"            	  version="1">
+    <entry name="ClientPkgBodyComm"                       type="ClientPkgBodyComm"                        desc=""/>
+    <entry name="groupUin"                                type="uint64"                                   desc=""/>
+    <entry name="dstUin"                                  type="uint64"                                   desc=""/>
+    <entry name="Banned"                      			      type="uint32"                                   desc="=1表示允许普通群成员聊天"/>
+  </struct>
+
+  <struct name="LargeGroupMemberBannedResp"            	   version="1">
+    <entry name="ClientPkgBodyComm"                        type="ClientPkgBodyComm"                       desc=""/>
+    <entry name="ClientPkgBodyBaseResp"                    type="ClientPkgBodyBaseResp"                   desc=""/>
+  </struct>
+
+  <!--大群里面的用户个人消息免打扰设置-->
+  <struct name="LargeGroupMemberMsgNotDisturbReq"            version="1">
+    <entry name="ClientPkgBodyComm"                       type="ClientPkgBodyComm"                        desc=""/>
+    <entry name="groupUin"                                type="uint64"                                   desc=""/>
+    <entry name="Stated"                      			      type="uint32"                                   desc=" =0表示个人关闭了在群里面的消息免打扰 =1个人开启了在群里面的消息免打扰"/>
+  </struct>
+
+  <struct name="LargeGroupMemberMsgNotDisturbResp"           version="1">
+    <entry name="ClientPkgBodyComm"                        type="ClientPkgBodyComm"                       desc=""/>
+    <entry name="ClientPkgBodyBaseResp"                    type="ClientPkgBodyBaseResp"                   desc=""/>
+  </struct>
+
+
+
+  <!--获取大群的信息-->
+  <struct name="GetLargeGroupInfoReq"              version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                        desc=""/>
+    <entry name="groupUin"                       type="uint64"                                   desc=""/>
+  </struct>
+
+  <struct name="GetLargeGroupInfoResp"           version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"               desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"           desc=""/>
+    <entry name="LargeGroupInfo"               type="LargeGroupInfo"                  desc="大群的属性"/>
+  </struct>
+
+  <!--通过大群二维码获取大群的信息-->
+  <struct name="GetLargeGroupInfoByQrcodeReq"      version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                            desc=""/>
+    <entry name="QrcodeContent"                  type="string"                 size="QRCODE_LEN"                     desc=""/>
+  </struct>
+
+  <struct name="GetLargeGroupInfoByQrcodeResp"   version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                                           desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"                                                       desc=""/>
+    <entry name="LargeGroupInfo"               type="LargeGroupInfo"                                                              desc="大群的属性"/>
+    <entry name="Count"                        type="uint32"                                                                      desc=""/>
+    <entry name="LargeGroupMemInfo"            type="LargeGroupMemInfo" count="MAX_GET_LARGE_GROUP_AVATAR_MEM_CNT" refer="Count"  desc=""/>
+  </struct>
+
+  <!--通过二维码加大群-->
+  <struct name="AddLargeGroupByQrcodeReq"          version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                            desc=""/>
+    <entry name="QrcodeContent"                  type="string"                 size="QRCODE_LEN"                     desc=""/>
+  </struct>
+
+  <struct name="AddLargeGroupByQrcodeResp"       version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"               desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"           desc=""/>
+  </struct>
+
+  <!--查询用户是否在大群中-->
+  <struct name="QueryUserIsInLargeGroupReq"        version="1">
+    <entry name="ClientPkgBodyComm"              type="ClientPkgBodyComm"                                                                desc=""/>
+    <entry name="groupUin"                       type="uint64"                                                                           desc=""/>
+    <entry name="count"                          type="uint32"                                                                           desc=""/>
+    <entry name="uinList"                        type="uint64"      count="MAX_QUERY_USER_IS_IN_LARGE_GORUP_CNT"     refer="count"       desc=""/>
+  </struct>
+
+  <struct name="QueryUserIsInLargeGroupResp"     version="1">
+    <entry name="ClientPkgBodyComm"            type="ClientPkgBodyComm"                                                                desc=""/>
+    <entry name="ClientPkgBodyBaseResp"        type="ClientPkgBodyBaseResp"                                                            desc=""/>
+    <entry name="count"                        type="uint32"                                                                           desc=""/>
+    <entry name="uinList"                      type="uint64"      count="MAX_QUERY_USER_IS_IN_LARGE_GORUP_CNT"     refer="count"       desc="在大群中的列表"/>
+  </struct>
+
+  <!--所有的大群聊消息已达-->
+  <struct name="AllLargeGroupMsgArrivalReq"   version="1">
+    <entry name="ClientPkgBodyComm"         type="ClientPkgBodyComm"                                                    desc=""/>
+    <entry name="groupUin"                  type="uint64"                                                               desc=""/>
+  </struct>
+
+  <struct name="AllLargeGroupMsgArrivalResp" version="1">
+    <entry name="ClientPkgBodyComm"        type="ClientPkgBodyComm"                                                     desc=""/>
+    <entry name="ClientPkgBodyBaseResp"    type="ClientPkgBodyBaseResp"                                                 desc=""/>
+  </struct>
+  <!--======================================大群协议========================================================================================================-->
+
+
+  <!--客户端协议头-->
+  <struct name="ClientPkgHead"                     version="1">
+    <entry name="STX"                            type="uint8"               defaultvalue="0x43"                              desc="头校验"/>
+    <entry name="pad"                            type="uint8"               defaultvalue="0xFF"                              desc="头校验"/>
+    <entry name="dataSize"                       type="uint32"                                                               desc="协议长度"/>
+    <entry name="crc"                            type="uint32"                                                               desc="CRC"/>
+    <entry name="cmdID"                          type="uint32"                                                               desc="命令字"/>
+  </struct>
+
+  <!--客户端协议体-->
+  <union name="ClientPkgBody"                          version="1">
+    <entry name="HeartBeatReq"                       type="HeartBeatReq"                       id="CMD_HEARTBEAT_REQ"                            desc=""/>
+    <entry name="HandShakeReq"                       type="HandShakeReq"                       id="CMD_HANDSHAKE_REQ"                            desc=""/>
+    <entry name="ConfirmHandShakeReq"                type="ConfirmHandShakeReq"                id="CMD_CONFIRM_HANDSHAKE_REQ"                    desc=""/>
+    <entry name="LogoutReq"                          type="LogoutReq"                          id="CMD_LOGOUT_REQ"                               desc=""/>
+    <entry name="GetSingleChatMsgReq"                type="GetSingleChatMsgReq"                id="CMD_GET_SINGLE_CHAT_MSG_REQ"                  desc=""/>
+	  <entry name="GetSingleChatHistoryMsgReq"         type="GetSingleChatHistoryMsgReq"         id="CMD_GET_SINGLE_CHAT_HISTORY_MSG_REQ"          desc=""/>
+    <entry name="GetLargeGroupMsgReq"                type="GetLargeGroupMsgReq"                id="CMD_GET_LARGE_GROUP_MSG_REQ"                  desc=""/>
+	  <entry name="GetLargeGroupHistoryMsgReq"         type="GetLargeGroupHistoryMsgReq"         id="CMD_GET_LARGE_GROUP_HISTORY_MSG_REQ"          desc=""/>
+    <entry name="LoginBySmsReq"                      type="LoginBySmsReq"                      id="CMD_LOGIN_BY_SMS_REQ"                         desc=""/>
+    <entry name="QueryFriendRelationByPhoneReq"      type="QueryFriendRelationByPhoneReq"      id="CMD_QUERY_FRIEND_RELATION_BY_PHONE_REQ"       desc=""/>
+    <entry name="QueryFriendRelationByUinReq"        type="QueryFriendRelationByUinReq"        id="CMD_QUERY_FRIEND_RELATION_BY_UIN_REQ"         desc=""/>
+	  <entry name="QueryUserByUinReq"        			     type="QueryUserByUinReq"        		       id="CMD_QUERY_USER_BY_UIN_REQ"         			     desc=""/>
+    <entry name="GetChatDetailReq"                   type="GetChatDetailReq"                   id="CMD_GET_CHAT_DETAIL_REQ"                      desc=""/>
+    <entry name="AllSingleMsgArrivalReq"             type="AllSingleMsgArrivalReq"             id="CMD_ALL_SINGLE_MSG_ARRIVAL_REQ"               desc=""/>
+    <entry name="SendMsgReq"                         type="SendMsgReq"                         id="CMD_SEND_MSG_REQ"                             desc=""/>
+    <entry name="GetHasNewMsgDialogListReq"          type="GetHasNewMsgDialogListReq"          id="CMD_GET_HAS_NEW_MSG_DIALOG_LIST_REQ"          desc=""/>
+    <entry name="MsgArrivalReq"                      type="MsgArrivalReq"                      id="CMD_MSG_ARRIVAL_REQ"                          desc=""/>
+    <entry name="SendSmsReq"                         type="SendSmsReq"                         id="CMD_SEND_SMS_REQ"                             desc=""/>
+    <entry name="IsPasswordSetReq"                   type="IsPasswordSetReq"                   id="CMD_IS_PASSWORDWD_SET_REQ"                    desc=""/>
+    <entry name="QueryFriendRelationByQrcodeReq"     type="QueryFriendRelationByQrcodeReq"     id="CMD_QUERY_FRIEND_RELATION_BY_QRCODE_REQ"      desc=""/>
+    <entry name="SmsCheckReq"                        type="SmsCheckReq"                        id="CMD_SMS_CHECK_REQ"                            desc=""/>
+    <entry name="SetNewPasswordBySmsReq"             type="SetNewPasswordBySmsReq"             id="CMD_SET_NEW_PASSWORD_BY_SMS_REQ"              desc=""/>
+    <entry name="LoginByPasswordReq"                 type="LoginByPasswordReq"                 id="CMD_LOGIN_BY_PASSWORD_REQ"                    desc=""/>
+    <entry name="SetFriendRemarkReq"                 type="SetFriendRemarkReq"                 id="CMD_SET_FRIEND_REMARK_REQ"                    desc=""/>
+    <entry name="ModifyPasswordReq"                  type="ModifyPasswordReq"                  id="CMD_MODIFY_PASSWORD_REQ"                      desc=""/>
+    <entry name="StartAudioCallReq"                  type="StartAudioCallReq"                  id="CMD_START_AUDIO_CALL_REQ"                     desc=""/>
+    <entry name="AcceptAudioCallReq"                 type="AcceptAudioCallReq"                 id="CMD_ACCEPT_AUDIO_CALL_REQ"                    desc=""/>
+    <entry name="RejectAudioCallReq"                 type="RejectAudioCallReq"                 id="CMD_REJECT_AUDIO_CALL_REQ"                    desc=""/>
+    <entry name="CancelAudioCallReq"                 type="CancelAudioCallReq"                 id="CMD_CANCEL_AUDIO_CALL_REQ"                    desc=""/>
+    <entry name="EndAudioCallReq"                    type="EndAudioCallReq"                    id="CMD_END_AUDIO_CALL_REQ"                       desc=""/>
+    <entry name="TimeoutAudioCallReq"                type="TimeoutAudioCallReq"                id="CMD_AUDIO_CALL_TIMEOUT_REQ"                   desc=""/>
+    <entry name="GetServerTimeReq"                   type="GetServerTimeReq"                   id="CMD_GET_SERVER_TIME_REQ"                      desc=""/>
+    <entry name="CancelSingleMsgReq"                 type="CancelSingleMsgReq"                 id="CMD_CANCEL_SINGLE_MSG_REQ"                    desc=""/>
+    <entry name="ModifyUserInfoReq"                  type="ModifyUserInfoReq"                  id="CMD_MODIFY_USER_INFO_REQ"                     desc=""/>
+    <entry name="ReqThirdPartyLoginTokenReq"         type="ReqThirdPartyLoginTokenReq"         id="CMD_REQ_THIRD_PARTY_LOGIN_TOKEN_REQ"          desc=""/>
+    <entry name="QueryUserByPhoneReq"                type="QueryUserByPhoneReq"                id="CMD_QUERY_USER_BY_PHONE_REQ"                  desc=""/>
+    <entry name="SendGreetReq"                       type="SendGreetReq"                       id="CMD_SEND_GREET_REQ"                           desc=""/>
+    <entry name="PullSendGreetListReq"               type="PullSendGreetListReq"               id="CMD_PULL_SEND_GREET_LIST_REQ"                 desc=""/>
+    <entry name="PullReceiveGreetListReq"            type="PullReceiveGreetListReq"            id="CMD_PULL_RECEIVE_GREET_LIST_REQ"              desc=""/>
+    <entry name="GreetHadReadListReq"                type="GreetHadReadListReq"                id="CMD_GREET_HAD_READ_LIST_REQ"                  desc=""/>
+    <entry name="AddBilateralFriendReq"              type="AddBilateralFriendReq"              id="CMD_ADD_BILATERAL_FRIEND_REQ"                 desc=""/>
+    <entry name="RemoveBilateralFriendReq"           type="RemoveBilateralFriendReq"           id="CMD_REMOVE_BILATERAL_FRIEND_REQ"              desc=""/>
+    <entry name="RemoveUnilateralFriendReq"          type="RemoveUnilateralFriendReq"          id="CMD_REMOVE_UNILATERAL_FRIEND_REQ"             desc=""/>
+    <entry name="GetWantGreetUinListReq"             type="GetWantGreetUinListReq"             id="CMD_GET_WANT_GREET_UIN_LIST_REQ"              desc=""/>
+    <entry name="PullLastGreetInfoReq"               type="PullLastGreetInfoReq"               id="CMD_PULL_LAST_GREET_INFO_REQ"                 desc=""/>
+    <entry name="GetFriendListInfoReq"               type="GetFriendListInfoReq"               id="CMD_GET_FRIEND_LIST_INFO_REQ"                 desc=""/>
+    <entry name="QueryGreetInfoReq"                  type="QueryGreetInfoReq"                  id="CMD_QUERY_GREET_INFO_REQ"                     desc=""/>
+    <entry name="FriendCircleStatusHadReadReq"       type="FriendCircleStatusHadReadReq"       id="CMD_FRIEND_CIRCLE_STATUS_HAD_READ_REQ"        desc=""/>
+    <entry name="SetUserMsgNotDisturbReq"            type="SetUserMsgNotDisturbReq"            id="CMD_SET_USER_MSG_NOT_DISTURB_REQ"             desc=""/>
+    <entry name="BackVersionReq"                     type="BackVersionReq"                     id="CMD_BACK_VERSION_REQ"                         desc=""/>
+	<entry name="NewBackVersionReq"                  type="NewBackVersionReq"                  id="CMD_NEW_BACK_VERSION_REQ"                     desc=""/>
+    <entry name="SetGlobalMsgNotDisturbReq"          type="SetGlobalMsgNotDisturbReq"          id="CMD_SET_GLOBAL_MSG_NOT_DISTURB_REQ"           desc=""/>
+    <entry name="GetSignatureReq"                    type="GetSignatureReq"                    id="CMD_GET_SIGNATURE_REQ"                        desc=""/>
+	
+    <!-- ===================================大群命令=============================================================================== -->
+    <entry name="CreateLargeGroupReq"                type="CreateLargeGroupReq"                id="CMD_CREATE_LARGE_GROUP_REQ"                   desc=""/>
+    <entry name="GetLargeGroupDetailReq"             type="GetLargeGroupDetailReq"             id="CMD_GET_LARGE_GROUP_DETAIL_REQ"               desc=""/>
+    <entry name="GetLargeGroupMemListReq"            type="GetLargeGroupMemListReq"            id="CMD_GET_LARGE_GROUP_MEM_LIST_REQ"             desc=""/>
+    <entry name="SendLargeGroupMsgReq"               type="SendLargeGroupMsgReq"               id="CMD_SEND_LARGE_GROUP_MSG_REQ"                 desc=""/>
+    <entry name="LargeGroupMsgArrivalReq"            type="LargeGroupMsgArrivalReq"            id="CMD_LARGE_GROUP_MSG_ARRIVAL_REQ"              desc=""/>
+    <entry name="AddLargeGroupByInviteReq"           type="AddLargeGroupByInviteReq"           id="CMD_ADD_LARGE_GROUP_BY_INVITE_REQ"            desc=""/>
+    <entry name="RemoveLargeGroupMemReq"             type="RemoveLargeGroupMemReq"             id="CMD_REMOVE_LARGE_GROUP_MEM_REQ"               desc=""/>
+    <entry name="GetLargeGroupListReq"               type="GetLargeGroupListReq"               id="CMD_GET_LARGE_GROUP_LIST_REQ"                 desc=""/>
+    <entry name="AddLargeGroupAdminReq"              type="AddLargeGroupAdminReq"              id="CMD_ADD_LARGE_GROUP_ADMIN_REQ"                desc=""/>
+    <entry name="RemoveLargeGroupAdminReq"           type="RemoveLargeGroupAdminReq"           id="CMD_REMOVE_LARGE_GROUP_ADMIN_REQ"             desc=""/>
+    <entry name="UpdateLargeGroupTitleOrIconReq"     type="UpdateLargeGroupTitleOrIconReq"     id="CMD_UPDATE_LARGE_GROUP_TITLE_OR_ICON_REQ"     desc=""/>
+    <entry name="UpdateMyLargeGroupNicknameReq"      type="UpdateMyLargeGroupNicknameReq"      id="CMD_UPDATE_MY_LARGE_GROUP_NICK_NAME_REQ"      desc=""/>
+    <entry name="QuitLargeGroupReq"                  type="QuitLargeGroupReq"                  id="CMD_QUIT_LARGE_GROUP_REQ"                     desc=""/>
+    <entry name="LargeGroupViewProfileChatSetReq"    type="LargeGroupViewProfileChatSetReq"    id="CMD_LARGE_GROUP_VIEW_PROFILE_CHAT_SET_REQ"    desc=""/>
+    <entry name="LargeGroupBannedReq"                type="LargeGroupBannedReq"    			       id="CMD_LARGE_GROUP_BANNED_REQ"    				       desc=""/>
+    <entry name="LargeGroupMemberBannedReq"          type="LargeGroupMemberBannedReq"    	     id="CMD_LARGE_GROUP_MEMBER_BANNED_REQ"    		     desc=""/>
+    <entry name="GetLargeGroupCreatorAdminInfoReq"   type="GetLargeGroupCreatorAdminInfoReq"   id="CMD_GET_LARGE_GROUP_CREATOR_ADMIN_INFO_REQ"   desc=""/>
+    <entry name="GetLargeGroupInfoReq"               type="GetLargeGroupInfoReq"               id="CMD_GET_LARGE_GROUP_INFO_REQ"                 desc=""/>
+    <entry name="AddLargeGroupByQrcodeReq"           type="AddLargeGroupByQrcodeReq"           id="CMD_ADD_LARGE_GROUP_BY_QRCODE_REQ"            desc=""/>
+    <entry name="QueryUserIsInLargeGroupReq"         type="QueryUserIsInLargeGroupReq"         id="CMD_QUERY_USER_IS_IN_LARGE_GROUP_REQ"         desc=""/>
+    <entry name="GetLargeGroupInfoByQrcodeReq"       type="GetLargeGroupInfoByQrcodeReq"       id="CMD_GET_LARGE_GROUP_INFO_BY_QRCODE_REQ"       desc=""/>
+    <entry name="AllLargeGroupMsgArrivalReq"         type="AllLargeGroupMsgArrivalReq"         id="CMD_ALL_LARGE_GROUP_MSG_ARRIVAL_REQ"          desc=""/>
+    <entry name="LargeGroupMemberMsgNotDisturbReq"   type="LargeGroupMemberMsgNotDisturbReq"   id="CMD_LARGE_GROUP_MEMBER_MSG_NOT_DISTURB_REQ"   desc=""/>
+    <!-- ===================================大群命令=============================================================================== -->
+  </union>
+
+  <union name="ClientPkgBodyResp"                     version="1">
+    <entry name="HeartBeatResp"                     type="HeartBeatResp"                      id="CMD_HEARTBEAT_RSP"                           desc=""/>
+    <entry name="HandShakeResp"                     type="HandShakeResp"                      id="CMD_HANDSHAKE_RSP"                           desc=""/>
+    <entry name="ConfirmHandShakeResp"              type="ConfirmHandShakeResp"               id="CMD_CONFIRM_HANDSHAKE_RSP"                   desc=""/>
+    <entry name="LogoutResp"                        type="LogoutResp"                         id="CMD_LOGOUT_RSP"                              desc=""/>
+    <entry name="GetSingleChatMsgResp"              type="GetSingleChatMsgResp"               id="CMD_GET_SINGLE_CHAT_MSG_RSP"                 desc=""/>
+	<entry name="GetSingleChatHistoryMsgResp"       type="GetSingleChatHistoryMsgResp"        id="CMD_GET_SINGLE_CHAT_HISTORY_MSG_RSP"         desc=""/>
+    <entry name="GetLargeGroupMsgResp"              type="GetLargeGroupMsgResp"               id="CMD_GET_LARGE_GROUP_MSG_RSP"                 desc=""/>
+	  <entry name="GetLargeGroupHistoryMsgResp"       type="GetLargeGroupHistoryMsgResp"        id="CMD_GET_LARGE_GROUP_HISTORY_MSG_RSP"         desc=""/>
+    <entry name="LoginBySmsResp"                    type="LoginBySmsResp"                     id="CMD_LOGIN_BY_SMS_RSP"                        desc=""/>
+    <entry name="QueryFriendRelationByPhoneResp"    type="QueryFriendRelationByPhoneResp"     id="CMD_QUERY_FRIEND_RELATION_BY_PHONE_RSP"      desc=""/>
+    <entry name="QueryFriendRelationByUinResp"      type="QueryFriendRelationByUinResp"       id="CMD_QUERY_FRIEND_RELATION_BY_UIN_RSP"        desc=""/>
+	<entry name="QueryUserByUinResp"      			type="QueryUserByUinResp"       		  id="CMD_QUERY_USER_BY_UIN_RSP"        		   desc=""/>
+    <entry name="GetChatDetailResp"                 type="GetChatDetailResp"                  id="CMD_GET_CHAT_DETAIL_RSP"                     desc=""/>
+    <entry name="AllSingleMsgArrivalResp"           type="AllSingleMsgArrivalResp"            id="CMD_ALL_SINGLE_MSG_ARRIVAL_RSP"              desc=""/>
+    <entry name="SendMsgResp"                       type="SendMsgResp"                        id="CMD_SEND_MSG_RSP"                            desc=""/>
+    <entry name="GetHasNewMsgDialogListResp"        type="GetHasNewMsgDialogListResp"         id="CMD_GET_HAS_NEW_MSG_DIALOG_LIST_RSP"         desc=""/>
+    <entry name="PushHasNewFriendCircleStatusResp"  type="PushHasNewFriendCircleStatusResp"   id="CMD_PUSH_HAS_NEW_FRIEND_CIRCLE_STATUS_RSP"   desc=""/>
+    <entry name="PushHasNewGreetMsgResp"            type="PushHasNewGreetMsgResp"             id="CMD_PUSH_HAS_NEW_GREET_MSG_RSP"              desc=""/>
+    <entry name="PushHasNewMsgResp"                 type="PushHasNewMsgResp"                  id="CMD_PUSH_HAS_NEW_MSG_RSP"                    desc=""/>	
+	<entry name="NewPushHasNewMsgResp"              type="NewPushHasNewMsgResp"               id="CMD_NEW_PUSH_HAS_NEW_MSG_RSP"                desc=""/>
+    <entry name="MsgArrivalResp"                    type="MsgArrivalResp"                     id="CMD_MSG_ARRIVAL_RSP"                         desc=""/>
+    <entry name="SendSmsResp"                       type="SendSmsResp"                        id="CMD_SEND_SMS_RSP"                            desc=""/>
+    <entry name="IsPasswordSetResp"                 type="IsPasswordSetResp"                  id="CMD_IS_PASSWORDWD_SET_RSP"                   desc=""/>
+    <entry name="QueryFriendRelationByQrcodeResp"   type="QueryFriendRelationByQrcodeResp"    id="CMD_QUERY_FRIEND_RELATION_BY_QRCODE_RSP"     desc=""/>
+    <entry name="SmsCheckResp"                      type="SmsCheckResp"                       id="CMD_SMS_CHECK_RSP"                           desc=""/>
+    <entry name="SetNewPasswordBySmsResp"           type="SetNewPasswordBySmsResp"            id="CMD_SET_NEW_PASSWORD_BY_SMS_RSP"             desc=""/>
+    <entry name="LoginByPasswordResp"               type="LoginByPasswordResp"                id="CMD_LOGIN_BY_PASSWORD_RSP"                   desc=""/>
+    <entry name="SetFriendRemarkResp"               type="SetFriendRemarkResp"                id="CMD_SET_FRIEND_REMARK_RSP"                   desc=""/>
+    <entry name="ModifyPasswordResp"                type="ModifyPasswordResp"                 id="CMD_MODIFY_PASSWORD_RSP"                     desc=""/>
+    <entry name="StartAudioCallResp"                type="StartAudioCallResp"                 id="CMD_START_AUDIO_CALL_RSP"                    desc=""/>
+    <entry name="AcceptAudioCallResp"               type="AcceptAudioCallResp"                id="CMD_ACCEPT_AUDIO_CALL_RSP"                   desc=""/>
+    <entry name="RejectAudioCallResp"               type="RejectAudioCallResp"                id="CMD_REJECT_AUDIO_CALL_RSP"                   desc=""/>
+    <entry name="CancelAudioCallResp"               type="CancelAudioCallResp"                id="CMD_CANCEL_AUDIO_CALL_RSP"                   desc=""/>
+    <entry name="EndAudioCallResp"                  type="EndAudioCallResp"                   id="CMD_END_AUDIO_CALL_RSP"                      desc=""/>
+    <entry name="TimeoutAudioCallResp"              type="TimeoutAudioCallResp"               id="CMD_AUDIO_CALL_TIMEOUT_RSP"                  desc=""/>
+    <entry name="GetServerTimeResp"                 type="GetServerTimeResp"                  id="CMD_GET_SERVER_TIME_RSP"                     desc=""/>
+    <entry name="KickUserResp"                      type="KickUserResp"                       id="CMD_KICK_USER_RSP"                           desc=""/>
+    <entry name="CancelSingleMsgResp"               type="CancelSingleMsgResp"                id="CMD_CANCEL_SINGLE_MSG_RSP"                   desc=""/>
+    <entry name="ModifyUserInfoResp"                type="ModifyUserInfoResp"                 id="CMD_MODIFY_USER_INFO_RSP"                    desc=""/>
+    <entry name="ReqThirdPartyLoginTokenResp"       type="ReqThirdPartyLoginTokenResp"        id="CMD_REQ_THIRD_PARTY_LOGIN_TOKEN_RSP"         desc=""/>
+    <entry name="QueryUserByPhoneResp"              type="QueryUserByPhoneResp"               id="CMD_QUERY_USER_BY_PHONE_RSP"                 desc=""/>
+    <entry name="SendGreetResp"                     type="SendGreetResp"                      id="CMD_SEND_GREET_RSP"                          desc=""/>
+    <entry name="PullSendGreetListResp"             type="PullSendGreetListResp"              id="CMD_PULL_SEND_GREET_LIST_RSP"                desc=""/>
+    <entry name="PullReceiveGreetListResp"          type="PullReceiveGreetListResp"           id="CMD_PULL_RECEIVE_GREET_LIST_RSP"             desc=""/>
+    <entry name="GreetHadReadListResp"              type="GreetHadReadListResp"               id="CMD_GREET_HAD_READ_LIST_RSP"                 desc=""/>
+    <entry name="AddBilateralFriendResp"            type="AddBilateralFriendResp"             id="CMD_ADD_BILATERAL_FRIEND_RSP"                desc=""/>
+    <entry name="RemoveBilateralFriendResp"         type="RemoveBilateralFriendResp"          id="CMD_REMOVE_BILATERAL_FRIEND_RSP"             desc=""/>
+    <entry name="RemoveUnilateralFriendResp"        type="RemoveUnilateralFriendResp"         id="CMD_REMOVE_UNILATERAL_FRIEND_RSP"            desc=""/>
+    <entry name="GetWantGreetUinListResp"           type="GetWantGreetUinListResp"            id="CMD_GET_WANT_GREET_UIN_LIST_RSP"             desc=""/>
+    <entry name="PullLastGreetInfoResp"             type="PullLastGreetInfoResp"              id="CMD_PULL_LAST_GREET_INFO_RSP"                desc=""/>
+    <entry name="GetFriendListInfoResp"             type="GetFriendListInfoResp"              id="CMD_GET_FRIEND_LIST_INFO_RSP"                desc=""/>
+    <entry name="QueryGreetInfoResp"                type="QueryGreetInfoResp"                 id="CMD_QUERY_GREET_INFO_RSP"                    desc=""/>
+    <entry name="FriendCircleStatusHadReadResp"     type="FriendCircleStatusHadReadResp"      id="CMD_FRIEND_CIRCLE_STATUS_HAD_READ_RSP"       desc=""/>
+    <entry name="SetUserMsgNotDisturbResp"          type="SetUserMsgNotDisturbResp"           id="CMD_SET_USER_MSG_NOT_DISTURB_RSP"            desc=""/>
+    <entry name="BackVersionResp"                   type="BackVersionResp"                    id="CMD_BACK_VERSION_RSP"                        desc=""/>
+	<entry name="NewBackVersionResp"                   type="NewBackVersionResp"                    id="CMD_NEW_BACK_VERSION_RSP"                    desc=""/>
+    <entry name="SetGlobalMsgNotDisturbResp"        type="SetGlobalMsgNotDisturbResp"         id="CMD_SET_GLOBAL_MSG_NOT_DISTURB_RSP"          desc=""/>
+    <entry name="GetSignatureResp"                  type="GetSignatureResp"                   id="CMD_GET_SIGNATURE_RSP"                       desc=""/>
+    
+    <!-- ===================================大群命令=============================================================================== -->
+    <entry name="CreateLargeGroupResp"              type="CreateLargeGroupResp"                id="CMD_CREATE_LARGE_GROUP_RSP"                 desc=""/>
+    <entry name="GetLargeGroupDetailResp"           type="GetLargeGroupDetailResp"             id="CMD_GET_LARGE_GROUP_DETAIL_RSP"             desc=""/>
+    <entry name="GetLargeGroupMemListResp"          type="GetLargeGroupMemListResp"            id="CMD_GET_LARGE_GROUP_MEM_LIST_RSP"           desc=""/>
+    <entry name="SendLargeGroupMsgResp"             type="SendLargeGroupMsgResp"               id="CMD_SEND_LARGE_GROUP_MSG_RSP"               desc=""/>
+    <entry name="LargeGroupMsgArrivalResp"          type="LargeGroupMsgArrivalResp"            id="CMD_LARGE_GROUP_MSG_ARRIVAL_RSP"            desc=""/>
+    <entry name="AddLargeGroupByInviteResp"         type="AddLargeGroupByInviteResp"           id="CMD_ADD_LARGE_GROUP_BY_INVITE_RSP"          desc=""/>
+    <entry name="RemoveLargeGroupMemResp"           type="RemoveLargeGroupMemResp"             id="CMD_REMOVE_LARGE_GROUP_MEM_RSP"             desc=""/>
+    <entry name="GetLargeGroupListResp"             type="GetLargeGroupListResp"               id="CMD_GET_LARGE_GROUP_LIST_RSP"               desc=""/>
+    <entry name="AddLargeGroupAdminResp"            type="AddLargeGroupAdminResp"              id="CMD_ADD_LARGE_GROUP_ADMIN_RSP"              desc=""/>
+    <entry name="RemoveLargeGroupAdminResp"         type="RemoveLargeGroupAdminResp"           id="CMD_REMOVE_LARGE_GROUP_ADMIN_RSP"           desc=""/>
+    <entry name="UpdateLargeGroupTitleOrIconResp"   type="UpdateLargeGroupTitleOrIconResp"     id="CMD_UPDATE_LARGE_GROUP_TITLE_OR_ICON_RSP"   desc=""/>
+    <entry name="UpdateMyLargeGroupNicknameResp"    type="UpdateMyLargeGroupNicknameResp"      id="CMD_UPDATE_MY_LARGE_GROUP_NICK_NAME_RSP"    desc=""/>
+    <entry name="QuitLargeGroupResp"                type="QuitLargeGroupResp"                  id="CMD_QUIT_LARGE_GROUP_RSP"                   desc=""/>
+    <entry name="LargeGroupViewProfileChatSetResp"  type="LargeGroupViewProfileChatSetResp"    id="CMD_LARGE_GROUP_VIEW_PROFILE_CHAT_SET_RSP"  desc=""/>
+    <entry name="LargeGroupBannedResp"              type="LargeGroupBannedResp"    			   id="CMD_LARGE_GROUP_BANNED_RSP"  			   desc=""/>
+    <entry name="LargeGroupMemberBannedResp"        type="LargeGroupMemberBannedResp"    	   id="CMD_LARGE_GROUP_MEMBER_BANNED_RSP"  		   desc=""/>
+    <entry name="GetLargeGroupCreatorAdminInfoResp" type="GetLargeGroupCreatorAdminInfoResp"   id="CMD_GET_LARGE_GROUP_CREATOR_ADMIN_INFO_RSP" desc=""/>
+    <entry name="GetLargeGroupInfoResp"             type="GetLargeGroupInfoResp"               id="CMD_GET_LARGE_GROUP_INFO_RSP"               desc=""/>
+    <entry name="AddLargeGroupByQrcodeResp"         type="AddLargeGroupByQrcodeResp"           id="CMD_ADD_LARGE_GROUP_BY_QRCODE_RSP"          desc=""/>
+    <entry name="QueryUserIsInLargeGroupResp"       type="QueryUserIsInLargeGroupResp"         id="CMD_QUERY_USER_IS_IN_LARGE_GROUP_RSP"       desc=""/>
+    <entry name="GetLargeGroupInfoByQrcodeResp"     type="GetLargeGroupInfoByQrcodeResp"       id="CMD_GET_LARGE_GROUP_INFO_BY_QRCODE_RSP"     desc=""/>
+    <entry name="AllLargeGroupMsgArrivalResp"       type="AllLargeGroupMsgArrivalResp"         id="CMD_ALL_LARGE_GROUP_MSG_ARRIVAL_RSP"        desc=""/>
+    <entry name="LargeGroupMemberMsgNotDisturbResp" type="LargeGroupMemberMsgNotDisturbResp"   id="CMD_LARGE_GROUP_MEMBER_MSG_NOT_DISTURB_RSP" desc=""/>
+    <!-- ===================================大群命令=============================================================================== -->
+  </union>
+
+  <!--客户端协议尾-->
+  <struct name="ClientPkgTail"                  version="1">
+    <entry name="ETX"                         type="uint8"           defaultvalue="0x00"           desc="尾校验"/>
+  </struct>
+
+  <!--与客户端通信包体-->
+  <struct name="ClientPkg"                      version="1"             sizeinfo="Head.dataSize">
+    <entry name="Head"                        type="ClientPkgHead"                                  desc="包头"/>
+    <entry name="Body"                        type="ClientPkgBody"    select="Head.cmdID"           desc="包体"/>
+    <entry name="Tail"                        type="ClientPkgTail"                                  desc="包尾"/>
+  </struct>
+
+  <struct name="ClientPkgResp"                  version="1"              sizeinfo="Head.dataSize">
+    <entry name="Head"                        type="ClientPkgHead"                                  desc="包头"/>
+    <entry name="Body"                        type="ClientPkgBodyResp" select="Head.cmdID"          desc="包体"/>
+    <entry name="Tail"                        type="ClientPkgTail"                                  desc="包尾"/>
+  </struct>
+</metalib>
