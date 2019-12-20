@@ -89,6 +89,7 @@
     "dev": "cross-env NODE_ENV=development node scripts/start.js",
     "build": " node scripts/build.js",
     "build:prod": "cross-env NODE_ENV=production node scripts/build.js",
+    "build:test": "cross-env NODE_ENV=test node scripts/build.js",
     "test": "node scripts/test.js",
     "update:test": "cross-env NODE_ENV=test node update/index.js",
     "update:prod": "cross-env NODE_ENV=production node update/index.js"
